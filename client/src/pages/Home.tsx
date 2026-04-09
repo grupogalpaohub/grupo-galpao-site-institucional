@@ -5,7 +5,7 @@
  * Colors:
  *   - Background dark: #001a29 (navy very dark)
  *   - Background medium: #003f61 (dark blue)
- *   - Performance+ blue: #1b9ce3 (bright blue)
+ *   * Performance+ blue: #45BDFE (bright cyan-blue — exact Figma value)
  *   - Gold accent: #e6c364
  *   - Text white: #fdfdfd
  *   - Text light blue: #4fc3f7
@@ -37,14 +37,46 @@ const GGLogoIcon = () => (
   </svg>
 );
 
-// Performance+ Logo Icon (triangle with plus)
-const PerfPlusIcon = ({ size = 48, color = "#1b9ce3" }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
-    <path d="M24 6L42 38H6L24 6Z" stroke="white" strokeWidth="1.5" fill="none"/>
-    <text x="30" y="20" fill="white" fontSize="14" fontWeight="700" fontFamily="Ubuntu">+</text>
-  </svg>
-);
+// Performance+ Logo — exact Figma SVGs: triangle (485-328) + plus (485-330), both #003F61
+const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
+  const scale = height / 55.9;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      {/* Icon group: triangle + plus mark */}
+      <div style={{ position: 'relative', width: 65 * scale, height: 55.9 * scale, flexShrink: 0 }}>
+        {/* Triangle (485-328) */}
+        <svg
+          width={57.54 * scale}
+          height={55.9 * scale}
+          viewBox="0 0 58 56"
+          fill="none"
+          style={{ position: 'absolute', left: 0, top: 0 }}
+        >
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.73303 56C1.09729 55.0235 0 53.2301 0 51.1813C0 50.2173 0.242842 49.3101 0.670381 48.5176L29.0037 2.2839C29.407 1.73386 29.9078 1.26046 30.4806 0.889583C31.3498 0.326707 32.3844 0 33.4944 0C34.6039 0 35.6379 0.32635 36.5069 0.888656C37.0743 1.25589 37.5713 1.72373 37.9727 2.26706L56.8849 33.1275L56.8567 33.1275C56.9047 33.1857 56.9507 33.2456 56.9948 33.3069L57.262 33.7428C57.5074 34.219 57.6462 34.7595 57.6462 35.3324C57.6462 37.244 56.1016 38.796 54.1992 38.796C54.0253 38.796 53.8544 38.783 53.6874 38.7579L53.7176 38.8073L26.7064 38.7363C23.7913 38.5561 21.4792 36.1202 21.4792 33.146C21.4792 33.1088 21.4796 33.0715 21.4803 33.0344L50.2261 33.11L33.4934 5.80593L2.73303 56Z" fill="#003F61"/>
+        </svg>
+        {/* Plus mark (485-330) */}
+        <svg
+          width={16.64 * scale}
+          height={12.63 * scale}
+          viewBox="0 0 17 13"
+          fill="none"
+          style={{ position: 'absolute', left: 48.66 * scale, top: 9.88 * scale }}
+        >
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill="#003F61"/>
+        </svg>
+      </div>
+      {/* Text: "Performance+" */}
+      <span style={{
+        fontFamily: "'Ubuntu', sans-serif",
+        fontWeight: 700,
+        fontSize: height * 0.6,
+        color: '#003F61',
+        letterSpacing: '-0.01em',
+        lineHeight: 1,
+      }}>Performance+</span>
+    </div>
+  );
+};
 
 // Roadmap icons
 const RoadmapIcon = ({ children }: { children: React.ReactNode }) => (
@@ -351,24 +383,23 @@ export default function Home() {
 
         </div>
 
-        {/* ===== STATS — Desktop: 3 colunas fundo branco | Mobile: carrossel com seta ===== */}
-        {/* Desktop: linha branca com 3 stats separados por divisores */}
+        {/* ===== STATS — Desktop: 3 colunas fundo branco | Mobile: apenas +R$2mi em linha ===== */}
+
+        {/* Desktop: 3 stats em linha com fundo cinza claro */}
         <div className="stats-desktop" style={{
-          background: "#f5f6f7",
-          display: "flex",
+          background: "#f0f2f4",
           justifyContent: "center",
           alignItems: "stretch",
-          padding: "0",
         }}>
           {stats.map((stat, i) => (
             <div key={i} style={{
               display: "flex",
               alignItems: "center",
               gap: 20,
-              padding: "32px 48px",
+              padding: "32px 56px",
               borderRight: i < stats.length - 1 ? "1px solid #d0d5dd" : "none",
               flex: 1,
-              maxWidth: 380,
+              maxWidth: 400,
             }}>
               <span style={{
                 fontFamily: "'Ubuntu', sans-serif",
@@ -388,132 +419,57 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Mobile: 1 stat visível + setas para navegar */}
-        <div className="stats-mobile" style={{ background: "#001a29", padding: "0 0 48px" }}>
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "0 24px",
-          }}>
-            {/* Prev arrow */}
-            <button
-              onClick={() => setActiveStat((activeStat - 1 + stats.length) % stats.length)}
-              aria-label="Anterior"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 8,
-                color: "#fdfdfd",
-                opacity: 0.7,
-                flexShrink: 0,
-              }}
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-
-            {/* Active stat */}
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 20,
-              flex: 1,
-              justifyContent: "center",
-              padding: "28px 8px",
-              minHeight: 80,
-            }}>
-              <span style={{
-                fontFamily: "'Ubuntu', sans-serif",
-                fontWeight: 700,
-                fontSize: 44,
-                color: "#fdfdfd",
-                lineHeight: 1,
-                whiteSpace: "nowrap",
-              }}>{stats[activeStat].value}</span>
-              <span style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: 15,
-                color: "#c8cdd3",
-                lineHeight: 1.45,
-                maxWidth: 160,
-              }}>{stats[activeStat].label}</span>
-            </div>
-
-            {/* Next arrow */}
-            <button
-              onClick={() => setActiveStat((activeStat + 1) % stats.length)}
-              aria-label="Próximo"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 8,
-                color: "#fdfdfd",
-                opacity: 0.7,
-                flexShrink: 0,
-              }}
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Dots indicator */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 6 }}>
-            {stats.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveStat(i)}
-                aria-label={`Stat ${i + 1}`}
-                style={{
-                  width: i === activeStat ? 20 : 6,
-                  height: 6,
-                  borderRadius: 3,
-                  background: i === activeStat ? "#fdfdfd" : "rgba(255,255,255,0.3)",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "all 0.3s ease",
-                }}
-              />
-            ))}
+        {/* Mobile: apenas +R$2mi em linha (sem card, sem seta) — exatamente como no Figma */}
+        <div className="stats-mobile" style={{ padding: "0 28px 48px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <span style={{
+              fontFamily: "'Ubuntu', sans-serif",
+              fontWeight: 700,
+              fontSize: 40,
+              color: "#fdfdfd",
+              lineHeight: 1,
+              whiteSpace: "nowrap",
+            }}>+R$2mi</span>
+            <span style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 16,
+              color: "#e2e3e4",
+              lineHeight: 1.45,
+            }}>Investidos em anúncios no Meta Ads</span>
           </div>
         </div>
 
       </section>
 
       {/* ===== PERFORMANCE+ SECTION (blue bg) ===== */}
-      <section id="metodologia" style={{ background: "#1b9ce3", borderRadius: "60px 60px 0 0", padding: "60px 0 80px" }}>
+      {/* Figma: #45BDFE, rounded top 60px, with large ellipse decorative element */}
+      <section id="metodologia" style={{ background: "#45BDFE", borderRadius: "60px 60px 0 0", padding: "60px 0 80px", position: "relative", overflow: "hidden" }}>
+        {/* Decorative ellipse — Figma: Ellipse 36/37, #45BDFE rounded-full, large, positioned at top */}
+        <div style={{
+          position: "absolute",
+          width: "596px",
+          height: "450px",
+          borderRadius: "50%",
+          background: "rgba(0,63,97,0.08)",
+          top: "-200px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          pointerEvents: "none",
+        }} />
         <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
-          {/* Logo Performance+ */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32, justifyContent: "center" }}>
-            <div style={{
-              width: 56,
-              height: 56,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                <path d="M28 8L50 46H6L28 8Z" fill="white" opacity="0.95"/>
-                <text x="36" y="32" fill="white" fontSize="18" fontWeight="900" fontFamily="Ubuntu">+</text>
-              </svg>
-            </div>
-            <span style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 42px)", color: "#fdfdfd" }}>Performance+</span>
+          {/* Logo Performance+ — exact Figma SVGs: triangle + plus, both #003F61 */}
+          <div style={{ marginBottom: 32, display: "flex", justifyContent: "center" }}>
+            <PerfPlusLogo height={56} />
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
             {/* Left: Description — Performance+ pillars intro (Figma: inside blue section) */}
             <div>
-              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", lineHeight: 1.6, marginBottom: 24 }}>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#003F61", lineHeight: 1.6, marginBottom: 24, fontWeight: 500 }}>
                 O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
               </p>
-              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", lineHeight: 1.7, marginBottom: 32, fontStyle: "italic" }}>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#003F61", lineHeight: 1.7, marginBottom: 32 }}>
                 Entregamos estrutura e mensuração real da sua empresa, evidenciando os impactos do marketing na sua margem de lucro, onde investir e quais os próximos passos a seguir.
               </p>
               <button className="btn-pill" style={{ borderColor: "#001a29", color: "#001a29", background: "rgba(0,26,41,0.1)" }}>
@@ -550,8 +506,8 @@ export default function Home() {
                 }}>
                   {/* Text */}
                   <div style={{ flex: 1, textAlign: pillar.side === "left" ? "right" : "left", padding: pillar.side === "left" ? "0 20px 0 0" : "0 0 0 20px" }}>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#fdfdfd", marginBottom: 4 }}>{pillar.title}</div>
-                    <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#fdfdfd", opacity: 0.85, lineHeight: 1.5 }}>{pillar.desc}</div>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#003F61", marginBottom: 4 }}>{pillar.title}</div>
+                    <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#003F61", opacity: 0.85, lineHeight: 1.5 }}>{pillar.desc}</div>
                   </div>
                   {/* Number circle */}
                   <div style={{
