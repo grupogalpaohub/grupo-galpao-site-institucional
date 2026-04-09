@@ -472,7 +472,7 @@ export default function Home() {
 
       {/* ===== PERFORMANCE+ SECTION (blue bg) ===== */}
       {/* Figma: #45BDFE, rounded top 60px, with large ellipse decorative element */}
-      <section id="metodologia" style={{ background: "#45BDFE", borderRadius: "60px 60px 0 0", padding: "60px 0 80px", position: "relative", overflow: "hidden" }}>
+      <section id="metodologia" style={{ background: "#45BDFE", borderRadius: "9999px 9999px 0 0", padding: "80px 0 80px", position: "relative", overflow: "hidden" }}>
         {/* Decorative ellipse — Figma: Ellipse 36/37 */}
         <div style={{
           position: "absolute",
