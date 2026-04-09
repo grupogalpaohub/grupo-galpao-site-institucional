@@ -15,7 +15,7 @@
  *   - Body: Manrope Regular/Medium (400/500)
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 // CDN URLs for images
 const IMAGES = {
@@ -295,9 +295,9 @@ export default function Home() {
             }} />
             <div className="logo-carousel-track">
               {[0, 1].map((set) => (
-                <>
+                <Fragment key={set}>
                   {/* OFFRio */}
-                  <div key={`offrio-${set}`} className="logo-carousel-item">
+                  <div className="logo-carousel-item">
                     <div style={{ position: "relative", width: 114, height: 28 }}>
                       <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
                       <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
@@ -309,14 +309,14 @@ export default function Home() {
                     </div>
                   </div>
                   {/* Vitacon */}
-                  <div key={`vitacon-${set}`} className="logo-carousel-item">
+                  <div className="logo-carousel-item">
                     <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
                   </div>
                   {/* Re.crie */}
-                  <div key={`recrie-${set}`} className="logo-carousel-item">
+                  <div className="logo-carousel-item">
                     <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
