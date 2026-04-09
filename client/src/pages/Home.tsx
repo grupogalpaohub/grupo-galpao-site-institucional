@@ -30,15 +30,10 @@ const IMAGES = {
   blogImg: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/I1032-6148;1032-6146_cff0c63c.webp",
 };
 
-// GG Logo SVG (diamond icon) - matches Figma design
+// GG Logo SVG - exact Figma asset (diamond/losango shape in gold)
 const GGLogoIcon = () => (
-  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="44" height="44" rx="6" fill="#001d33"/>
-    {/* Diamond shape */}
-    <path d="M22 8L36 16V28L22 36L8 28V16L22 8Z" fill="none" stroke="#e6c364" strokeWidth="1.5"/>
-    <path d="M22 14L30 19V29L22 34L14 29V19L22 14Z" fill="#e6c364" opacity="0.15"/>
-    {/* Inner GG letters */}
-    <text x="14" y="27" fill="#e6c364" fontSize="14" fontWeight="700" fontFamily="Ubuntu" letterSpacing="-1">GG</text>
+  <svg width="31" height="35" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.2933 32.7225L17.5887 26.7799L21.0523 21.206H28.1664L21.2933 32.7225ZM16.4151 24.8973L14.1081 21.1966H18.7147L16.4151 24.8973ZM11.542 32.7393L2.09072 17.3383C1.95106 17.1104 1.9556 16.8191 2.10239 16.5958L11.5437 2.23347L15.1368 7.62626L10.064 15.5888C9.51218 16.4553 9.50662 17.5781 10.0499 18.4496L10.5256 19.2129H7.12346C6.68943 19.2129 6.42153 19.7523 6.64504 20.176L7.0209 20.8884C7.12181 21.0796 7.30336 21.1966 7.49924 21.1966H11.7624L15.2442 26.7815L11.542 32.7393ZM20.9305 2.23645L28.0334 12.6263H20.925C20.884 12.6263 20.8462 12.6061 20.8234 12.5719L17.5121 7.60207L20.9305 2.23645ZM30.4535 19.9073C30.2113 19.4806 29.7559 19.2155 29.2651 19.2155H27.492V19.2129H12.8714L11.739 17.3966C11.5989 17.1718 11.6003 16.882 11.7429 16.6585L16.3432 9.43721L19.1666 13.6752C19.5592 14.2646 20.2165 14.6167 20.925 14.6167H29.2155C29.7241 14.6167 30.1872 14.3373 30.4244 13.8876C30.6615 13.4378 30.6306 12.8979 30.3437 12.4788L22.3177 0.738959C21.9963 0.268527 21.4605 -0.00845514 20.8944 0.0022703C20.3246 0.0115083 19.8015 0.303757 19.4953 0.784366L16.3058 5.79111L12.9496 0.753521C12.6339 0.279957 12.0958 0.00344467 11.5369 0C10.9679 0.00180062 10.4415 0.286534 10.1289 0.762054L0.439004 15.5024C-0.1296 16.3676 -0.147292 17.4968 0.394303 18.3792L10.0989 34.1935C10.4083 34.697 10.9452 34.9984 11.5359 35H11.5405C12.1293 35 12.666 34.7018 12.9767 34.2015L16.4178 28.6641L19.8636 34.1918C20.1751 34.6913 20.7104 34.9883 21.2982 34.9883C21.3038 34.9883 21.3094 34.9883 21.3149 34.988C21.9093 34.9825 22.446 34.6744 22.751 34.1639L30.4387 21.2826C30.6901 20.861 30.696 20.3342 30.4535 19.9073Z" fill="#E6C364"/>
   </svg>
 );
 
@@ -141,29 +136,40 @@ export default function Home() {
       {/* ===== NAVBAR ===== */}
       <header style={{
         background: "#001a29",
-        borderBottom: "1px solid rgba(253,253,253,0.1)",
         position: "sticky",
         top: 0,
         zIndex: 100,
+        padding: "14px 16px",
       }}>
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 24px", maxWidth: 1280, margin: "0 auto" }}>
-          {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        {/* Mobile header: frame with white translucent border (as in Figma) */}
+        <div style={{
+          background: "rgba(255,255,255,0.25)",
+          border: "0.6px solid #fdfdfd",
+          borderRadius: 5,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "10px 14px",
+          maxWidth: 1280,
+          margin: "0 auto",
+        }}>
+          {/* Logo: GG diamond + GRUPO GALPÃO text */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <GGLogoIcon />
             <div>
-              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.08em", color: "#fdfdfd", lineHeight: 1.1 }}>GRUPO</div>
-              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.08em", color: "#fdfdfd", lineHeight: 1.1 }}>GALPÃO</div>
+              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.06em", color: "#fdfdfd", lineHeight: 1.15 }}>GRUPO</div>
+              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 14, letterSpacing: "0.06em", color: "#fdfdfd", lineHeight: 1.15 }}>GALPÃO</div>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <nav style={{ display: "flex", gap: 32, alignItems: "center" }} className="hidden-mobile">
-            <a href="#metodologia" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Metodologia</a>
-            <a href="#cases" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Cases</a>
-            <a href="#roadmap" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>RoadMap</a>
-            <a href="#quem-faz" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Quem Somos</a>
-            <a href="#blog" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Blog</a>
-            <button className="btn-pill" style={{ fontSize: 14, padding: "8px 20px" }}>Agendar Reunião</button>
+          <nav style={{ display: "flex", gap: 28, alignItems: "center" }} className="hidden-mobile">
+            <a href="#metodologia" style={{ color: "#fdfdfd", textDecoration: "none", fontFamily: "'Manrope', sans-serif", fontSize: 14, fontWeight: 500, opacity: 0.9 }}>Metodologia</a>
+            <a href="#cases" style={{ color: "#fdfdfd", textDecoration: "none", fontFamily: "'Manrope', sans-serif", fontSize: 14, fontWeight: 500, opacity: 0.9 }}>Cases</a>
+            <a href="#roadmap" style={{ color: "#fdfdfd", textDecoration: "none", fontFamily: "'Manrope', sans-serif", fontSize: 14, fontWeight: 500, opacity: 0.9 }}>RoadMap</a>
+            <a href="#quem-faz" style={{ color: "#fdfdfd", textDecoration: "none", fontFamily: "'Manrope', sans-serif", fontSize: 14, fontWeight: 500, opacity: 0.9 }}>Quem Somos</a>
+            <a href="#blog" style={{ color: "#fdfdfd", textDecoration: "none", fontFamily: "'Manrope', sans-serif", fontSize: 14, fontWeight: 500, opacity: 0.9 }}>Blog</a>
+            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontSize: 14, padding: "8px 20px" }}>Agendar Reunião</button>
           </nav>
 
           {/* Mobile hamburger */}
@@ -180,9 +186,9 @@ export default function Home() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div style={{ background: "#001d33", padding: "16px 24px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+          <div style={{ background: "#001d33", padding: "16px 24px", borderTop: "1px solid rgba(255,255,255,0.1)", borderRadius: "0 0 5px 5px", maxWidth: 1280, margin: "0 auto" }}>
             {["Metodologia", "Cases", "RoadMap", "Quem Somos", "Blog"].map((item) => (
-              <a key={item} href="#" onClick={() => setMenuOpen(false)} style={{ display: "block", color: "#fdfdfd", textDecoration: "none", padding: "10px 0", fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>{item}</a>
+              <a key={item} href="#" onClick={() => setMenuOpen(false)} style={{ display: "block", color: "#fdfdfd", textDecoration: "none", padding: "10px 0", fontFamily: "'Manrope', sans-serif", fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>{item}</a>
             ))}
             <button className="btn-pill" style={{ marginTop: 16, width: "100%" }}>Agendar Reunião</button>
           </div>
@@ -190,54 +196,62 @@ export default function Home() {
       </header>
 
       {/* ===== HERO SECTION ===== */}
-      <section style={{ background: "#001a29", padding: "60px 0 80px", position: "relative", overflow: "hidden" }}>
-        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
-            {/* Left: Text */}
-            <div>
+      {/* Figma: texto e botões ficam sobre a imagem de fundo com overlay azul escuro */}
+      <section style={{ background: "#001a29", padding: "20px 16px 40px", position: "relative" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+
+          {/* Hero card: imagem com texto sobreposto (mobile-first como Figma) */}
+          <div style={{ position: "relative", borderRadius: 11, overflow: "hidden", marginBottom: 20 }}>
+            {/* Background image */}
+            <img
+              src={IMAGES.hero}
+              alt="Hero background"
+              style={{ width: "100%", height: "clamp(280px, 45vw, 520px)", objectFit: "cover", display: "block" }}
+            />
+            {/* Blue overlay */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0, 63, 97, 0.80)",
+            }} />
+            {/* Text content over image */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              padding: "clamp(24px, 4vw, 48px)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}>
               <h1 style={{
                 fontFamily: "'Ubuntu', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(36px, 5vw, 60px)",
+                fontSize: "clamp(28px, 4.5vw, 56px)",
                 lineHeight: 1.15,
                 color: "#fdfdfd",
-                margin: "0 0 24px",
+                margin: "0 0 20px",
+                maxWidth: 600,
               }}>
                 Clareza para decidir. Segurança para crescer.
               </h1>
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontSize: "clamp(16px, 1.5vw, 19px)",
+                fontSize: "clamp(15px, 1.5vw, 19px)",
                 fontWeight: 500,
                 color: "#fdfdfd",
                 lineHeight: 1.6,
-                margin: "0 0 40px",
-                opacity: 0.9,
+                margin: "0 0 32px",
+                maxWidth: 520,
               }}>
                 A maioria das empresas tenta anunciar sem estrutura. Nós organizamos dados, criativos, canais e ofertas para crescer de forma sustentável.
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
-                <button className="btn-pill">Quero agendar uma reunião</button>
-                <button className="btn-pill">Quero conhecer o Método</button>
-              </div>
             </div>
+          </div>
 
-            {/* Right: Hero image */}
-            <div style={{ position: "relative" }}>
-              <div style={{ position: "relative", borderRadius: 12, overflow: "hidden" }}>
-                <img
-                  src={IMAGES.hero}
-                  alt="Hero background"
-                  style={{ width: "100%", height: 340, objectFit: "cover", display: "block", borderRadius: 12 }}
-                />
-                <div style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "rgba(0, 63, 97, 0.75)",
-                  borderRadius: 12,
-                }} />
-              </div>
-            </div>
+          {/* CTA Buttons below the hero card */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 320 }}>
+            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontSize: 16, padding: "10px 24px", justifyContent: "center" }}>Quero agendar uma reunião</button>
+            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontSize: 16, padding: "10px 24px", justifyContent: "center", borderColor: "rgba(255,253,250,0.8)", background: "rgba(0,63,97,0.2)" }}>Quero conhecer o Método</button>
           </div>
         </div>
       </section>
