@@ -1,791 +1,1139 @@
 /**
  * Grupo Galpão - Site Institucional
- * Design System:
- * - Fonts: Ubuntu (headings, buttons), Manrope (body, descriptions)
- * - Colors: #001a29 (dark bg), #003f61 (primary blue), #0d6ca0 (medium blue), #1a95d8 (light blue), #45bdfe (accent)
- *           #e6c364 (gold accent), #fdfdfd (light text), #e2e3e4 (muted text), #fffaf3 (warm white)
- * - Layout: Mobile-first, single column, max-width 390px centered
+ * Design System: Figma [M]-WireframeGGLayoutSiteInstitucional
+ *
+ * Colors:
+ *   - Background dark: #001a29 (navy very dark)
+ *   - Background medium: #003f61 (dark blue)
+ *   - Performance+ blue: #1b9ce3 (bright blue)
+ *   - Gold accent: #e6c364
+ *   - Text white: #fdfdfd
+ *   - Text light blue: #4fc3f7
+ *
+ * Fonts:
+ *   - Headings: Ubuntu Bold (700)
+ *   - Body: Manrope Regular/Medium (400/500)
  */
 
 import { useState } from "react";
 
-// OffRio Logo Component (SVG parts assembled)
-function OffRioLogo() {
-  return (
-    <div className="relative" style={{ width: "114px", height: "28px" }}>
-      <img src="/I1013-2953;574-2812.svg" alt="" className="absolute" style={{ width: "24px", height: "27px", left: "0px", top: "0.85px" }} />
-      <img src="/I1013-2953;574-2816.svg" alt="" className="absolute" style={{ width: "14px", height: "26px", left: "27px", top: "1.24px" }} />
-      <img src="/I1013-2953;574-2817.svg" alt="" className="absolute" style={{ width: "14px", height: "26px", left: "43.53px", top: "1.24px" }} />
-      <img src="/I1013-2953;574-2813.svg" alt="" className="absolute" style={{ width: "22px", height: "26px", left: "60.63px", top: "1.07px" }} />
-      <img src="/I1013-2953;574-2815.svg" alt="" className="absolute" style={{ width: "6px", height: "18px", left: "85.37px", top: "8.63px" }} />
-      <img src="/I1013-2953;574-2814.svg" alt="" className="absolute" style={{ width: "20px", height: "19px", left: "94.19px", top: "8.21px" }} />
-      <img src="/I1013-2953;574-2818.svg" alt="" className="absolute" style={{ width: "7px", height: "6px", left: "84.79px", top: "0px" }} />
-    </div>
-  );
-}
+// CDN URLs for images
+const IMAGES = {
+  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/1021-5537_34d86ff1.webp",
+  caseEcomm: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/1014-4098_63a22853.webp",
+  caseLeads: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/1014-4040_b14d0942.webp",
+  founderVinicius: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/1014-3486_22e9991a.webp",
+  founderRodrigo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/1014-3487_81ccbb85.webp",
+  logoRecrie: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/I1013-2954;574-2845_24bfbf09.webp",
+  logoVitacon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/I1013-2955;574-2849_725cd6dc.webp",
+  logoLeoes: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/I1014-3537;944-853_edf43537.webp",
+  blogImg: "https://d2xsxph8kpxj0f.cloudfront.net/310519663074476868/Hw5nuhLsA9RmVm9VCJJsJW/I1032-6148;1032-6146_cff0c63c.webp",
+};
 
-// Performance+ Logo Component
-function PerformancePlusLogo({ className = "" }: { className?: string }) {
-  return (
-    <div className={`relative overflow-hidden ${className}`} style={{ width: "306px", height: "56px" }}>
-      {/* Icon part (P+ symbol) */}
-      <img src="/I1014-2982;485-328.svg" alt="" className="absolute" style={{ width: "58px", height: "56px", left: "0px", top: "0px" }} />
-      <img src="/I1014-2982;485-330.svg" alt="" className="absolute" style={{ width: "17px", height: "13px", left: "49px", top: "10px" }} />
-      {/* Text letters */}
-      <img src="/I1014-2982;485-314.svg" alt="" className="absolute" style={{ width: "18px", height: "24px", left: "80px", top: "22px" }} />
-      <img src="/I1014-2982;485-315.svg" alt="" className="absolute" style={{ width: "17px", height: "19px", left: "101px", top: "28px" }} />
-      <img src="/I1014-2982;485-316.svg" alt="" className="absolute" style={{ width: "12px", height: "19px", left: "121px", top: "28px" }} />
-      <img src="/I1014-2982;485-317.svg" alt="" className="absolute" style={{ width: "12px", height: "27px", left: "136px", top: "20px" }} />
-      <img src="/I1014-2982;485-318.svg" alt="" className="absolute" style={{ width: "18px", height: "19px", left: "149px", top: "28px" }} />
-      <img src="/I1014-2982;485-319.svg" alt="" className="absolute" style={{ width: "12px", height: "19px", left: "171px", top: "28px" }} />
-      <img src="/I1014-2982;485-320.svg" alt="" className="absolute" style={{ width: "25px", height: "19px", left: "186px", top: "28px" }} />
-      <img src="/I1014-2982;485-321.svg" alt="" className="absolute" style={{ width: "16px", height: "19px", left: "214px", top: "28px" }} />
-      <img src="/I1014-2982;485-322.svg" alt="" className="absolute" style={{ width: "16px", height: "19px", left: "234px", top: "28px" }} />
-      <img src="/I1014-2982;485-323.svg" alt="" className="absolute" style={{ width: "15px", height: "19px", left: "254px", top: "28px" }} />
-      <img src="/I1014-2982;485-324.svg" alt="" className="absolute" style={{ width: "17px", height: "19px", left: "270px", top: "28px" }} />
-      <img src="/I1014-2982;485-325.svg" alt="" className="absolute" style={{ width: "16px", height: "17px", left: "290px", top: "28px" }} />
-    </div>
-  );
-}
+// GG Logo SVG (diamond icon) - matches Figma design
+const GGLogoIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="44" height="44" rx="6" fill="#001d33"/>
+    {/* Diamond shape */}
+    <path d="M22 8L36 16V28L22 36L8 28V16L22 8Z" fill="none" stroke="#e6c364" strokeWidth="1.5"/>
+    <path d="M22 14L30 19V29L22 34L14 29V19L22 14Z" fill="#e6c364" opacity="0.15"/>
+    {/* Inner GG letters */}
+    <text x="14" y="27" fill="#e6c364" fontSize="14" fontWeight="700" fontFamily="Ubuntu" letterSpacing="-1">GG</text>
+  </svg>
+);
 
-// Performance+ Ecomm Logo
-function PerformanceEcommLogo() {
-  return (
-    <div className="relative overflow-hidden" style={{ width: "239px", height: "59px" }}>
-      {/* Icon */}
-      <img src="/I1014-4046;485-541.svg" alt="" className="absolute" style={{ width: "62px", height: "59px", left: "0px", top: "0px" }} />
-      <img src="/I1014-4046;485-543.svg" alt="" className="absolute" style={{ width: "18px", height: "13px", left: "52px", top: "10px" }} />
-      {/* Text letters - Performance */}
-      <img src="/I1014-4046;485-522.svg" alt="" className="absolute" style={{ width: "13px", height: "17px", left: "78px", top: "2px" }} />
-      <img src="/I1014-4046;485-523.svg" alt="" className="absolute" style={{ width: "12px", height: "13px", left: "93px", top: "6px" }} />
-      <img src="/I1014-4046;485-524.svg" alt="" className="absolute" style={{ width: "8px", height: "13px", left: "107px", top: "6px" }} />
-      <img src="/I1014-4046;485-525.svg" alt="" className="absolute" style={{ width: "9px", height: "19px", left: "117px", top: "0px" }} />
-      <img src="/I1014-4046;485-526.svg" alt="" className="absolute" style={{ width: "13px", height: "13px", left: "127px", top: "6px" }} />
-      <img src="/I1014-4046;485-527.svg" alt="" className="absolute" style={{ width: "8px", height: "13px", left: "143px", top: "6px" }} />
-      <img src="/I1014-4046;485-528.svg" alt="" className="absolute" style={{ width: "18px", height: "13px", left: "153px", top: "6px" }} />
-      <img src="/I1014-4046;485-529.svg" alt="" className="absolute" style={{ width: "11px", height: "13px", left: "173px", top: "6px" }} />
-      <img src="/I1014-4046;485-530.svg" alt="" className="absolute" style={{ width: "11px", height: "13px", left: "187px", top: "6px" }} />
-      <img src="/I1014-4046;485-531.svg" alt="" className="absolute" style={{ width: "10px", height: "13px", left: "201px", top: "6px" }} />
-      <img src="/I1014-4046;485-532.svg" alt="" className="absolute" style={{ width: "12px", height: "13px", left: "213px", top: "6px" }} />
-      <img src="/I1014-4046;485-533.svg" alt="" className="absolute" style={{ width: "12px", height: "12px", left: "227px", top: "6px" }} />
-      {/* Text letters - Ecomm */}
-      <img src="/I1014-4046;485-534.svg" alt="" className="absolute" style={{ width: "12px", height: "17px", left: "78px", top: "24px" }} />
-      <img src="/I1014-4046;485-535.svg" alt="" className="absolute" style={{ width: "10px", height: "13px", left: "92px", top: "28px" }} />
-      <img src="/I1014-4046;485-536.svg" alt="" className="absolute" style={{ width: "13px", height: "13px", left: "104px", top: "28px" }} />
-      <img src="/I1014-4046;485-537.svg" alt="" className="absolute" style={{ width: "18px", height: "13px", left: "119px", top: "28px" }} />
-      <img src="/I1014-4046;485-538.svg" alt="" className="absolute" style={{ width: "18px", height: "13px", left: "140px", top: "28px" }} />
-    </div>
-  );
-}
+// Performance+ Logo Icon (triangle with plus)
+const PerfPlusIcon = ({ size = 48, color = "#1b9ce3" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
+    <path d="M24 6L42 38H6L24 6Z" stroke="white" strokeWidth="1.5" fill="none"/>
+    <text x="30" y="20" fill="white" fontSize="14" fontWeight="700" fontFamily="Ubuntu">+</text>
+  </svg>
+);
 
-// Performance+ Leads Logo
-function PerformanceLeadsLogo() {
-  return (
-    <div className="relative overflow-hidden" style={{ width: "237px", height: "60px" }}>
-      {/* Icon */}
-      <img src="/I1014-4130;485-514.svg" alt="" className="absolute" style={{ width: "62px", height: "60px", left: "0px", top: "0px" }} />
-      <img src="/I1014-4130;485-516.svg" alt="" className="absolute" style={{ width: "18px", height: "14px", left: "52px", top: "11px" }} />
-      {/* Text letters - Performance */}
-      <img src="/I1014-4130;485-495.svg" alt="" className="absolute" style={{ width: "13px", height: "17px", left: "77px", top: "2px" }} />
-      <img src="/I1014-4130;485-496.svg" alt="" className="absolute" style={{ width: "12px", height: "14px", left: "92px", top: "6px" }} />
-      <img src="/I1014-4130;485-497.svg" alt="" className="absolute" style={{ width: "8px", height: "13px", left: "107px", top: "6px" }} />
-      <img src="/I1014-4130;485-498.svg" alt="" className="absolute" style={{ width: "9px", height: "19px", left: "117px", top: "0px" }} />
-      <img src="/I1014-4130;485-499.svg" alt="" className="absolute" style={{ width: "13px", height: "14px", left: "127px", top: "6px" }} />
-      <img src="/I1014-4130;485-500.svg" alt="" className="absolute" style={{ width: "8px", height: "13px", left: "143px", top: "6px" }} />
-      <img src="/I1014-4130;485-501.svg" alt="" className="absolute" style={{ width: "18px", height: "13px", left: "153px", top: "6px" }} />
-      <img src="/I1014-4130;485-502.svg" alt="" className="absolute" style={{ width: "11px", height: "14px", left: "173px", top: "6px" }} />
-      <img src="/I1014-4130;485-503.svg" alt="" className="absolute" style={{ width: "11px", height: "13px", left: "187px", top: "6px" }} />
-      <img src="/I1014-4130;485-504.svg" alt="" className="absolute" style={{ width: "10px", height: "14px", left: "201px", top: "6px" }} />
-      <img src="/I1014-4130;485-505.svg" alt="" className="absolute" style={{ width: "12px", height: "14px", left: "213px", top: "6px" }} />
-      <img src="/I1014-4130;485-506.svg" alt="" className="absolute" style={{ width: "11px", height: "12px", left: "227px", top: "6px" }} />
-      {/* Text letters - Leads */}
-      <img src="/I1014-4130;485-507.svg" alt="" className="absolute" style={{ width: "11px", height: "17px", left: "77px", top: "24px" }} />
-      <img src="/I1014-4130;485-508.svg" alt="" className="absolute" style={{ width: "12px", height: "14px", left: "91px", top: "28px" }} />
-      <img src="/I1014-4130;485-509.svg" alt="" className="absolute" style={{ width: "11px", height: "14px", left: "105px", top: "28px" }} />
-      <img src="/I1014-4130;485-510.svg" alt="" className="absolute" style={{ width: "12px", height: "19px", left: "118px", top: "22px" }} />
-      <img src="/I1014-4130;485-511.svg" alt="" className="absolute" style={{ width: "10px", height: "14px", left: "132px", top: "28px" }} />
-    </div>
-  );
-}
+// Roadmap icons
+const RoadmapIcon = ({ children }: { children: React.ReactNode }) => (
+  <div style={{
+    width: 50,
+    height: 50,
+    borderRadius: '50%',
+    background: '#0d6ca0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  }}>
+    {children}
+  </div>
+);
 
-// GG Logo Component
-function GGLogo({ className = "" }: { className?: string }) {
-  return (
-    <div className={`relative ${className}`} style={{ width: "93px", height: "34px" }}>
-      {/* Main G icon */}
-      <img src="/I1029-6074;7-57.svg" alt="G" className="absolute" style={{ width: "30px", height: "34px", left: "0px", top: "0px" }} />
-      {/* "rupo" letters */}
-      <img src="/I1029-6074;7-59.svg" alt="r" className="absolute" style={{ width: "9px", height: "11px", left: "36px", top: "4px" }} />
-      <img src="/I1029-6074;7-61.svg" alt="u" className="absolute" style={{ width: "9px", height: "11px", left: "47px", top: "4px" }} />
-      <img src="/I1029-6074;7-63.svg" alt="p" className="absolute" style={{ width: "9px", height: "11px", left: "56px", top: "4px" }} />
-      <img src="/I1029-6074;7-65.svg" alt="o" className="absolute" style={{ width: "8px", height: "11px", left: "66px", top: "4px" }} />
-      <img src="/I1029-6074;7-67.svg" alt="G" className="absolute" style={{ width: "10px", height: "11px", left: "75px", top: "4px" }} />
-      {/* "alpão" letters */}
-      <img src="/I1029-6074;7-69.svg" alt="a" className="absolute" style={{ width: "9px", height: "11px", left: "36px", top: "19px" }} />
-      <img src="/I1029-6074;7-71.svg" alt="l" className="absolute" style={{ width: "5px", height: "10px", left: "46px", top: "20px" }} />
-      <img src="/I1029-6074;7-73.svg" alt="p" className="absolute" style={{ width: "9px", height: "10px", left: "57px", top: "20px" }} />
-      <img src="/I1029-6074;7-75.svg" alt="ã" className="absolute" style={{ width: "9px", height: "10px", left: "65px", top: "19px" }} />
-      <img src="/I1029-6074;7-77.svg" alt="o" className="absolute" style={{ width: "9px", height: "14px", left: "72px", top: "16px" }} />
-      <img src="/I1029-6074;7-79.svg" alt="." className="absolute" style={{ width: "4px", height: "11px", left: "83px", top: "19px" }} />
-    </div>
-  );
-}
+// Social icons
+const InstagramIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </svg>
+);
 
-// GG Logo Footer Component
-function GGLogoFooter() {
-  return (
-    <div className="relative" style={{ width: "111px", height: "51px" }}>
-      <img src="/I1023-5754;7-84.svg" alt="" className="absolute" style={{ left: "0px", top: "0px", height: "51px", width: "auto" }} />
-      <img src="/I1023-5754;7-86.svg" alt="" className="absolute" style={{ left: "38px", top: "6px", height: "16px", width: "auto" }} />
-      <img src="/I1023-5754;7-88.svg" alt="" className="absolute" style={{ left: "47px", top: "6px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-90.svg" alt="" className="absolute" style={{ left: "56px", top: "6px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-92.svg" alt="" className="absolute" style={{ left: "65px", top: "6px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-94.svg" alt="" className="absolute" style={{ left: "74px", top: "6px", height: "16px", width: "auto" }} />
-      <img src="/I1023-5754;7-96.svg" alt="" className="absolute" style={{ left: "38px", top: "29px", height: "16px", width: "auto" }} />
-      <img src="/I1023-5754;7-98.svg" alt="" className="absolute" style={{ left: "46px", top: "29px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-100.svg" alt="" className="absolute" style={{ left: "57px", top: "29px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-102.svg" alt="" className="absolute" style={{ left: "65px", top: "29px", height: "15px", width: "auto" }} />
-      <img src="/I1023-5754;7-104.svg" alt="" className="absolute" style={{ left: "72px", top: "25px", height: "20px", width: "auto" }} />
-    </div>
-  );
-}
+const FacebookIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
 
-// Hamburger Menu Icon
-function HamburgerIcon() {
-  return (
-    <div className="flex flex-col gap-[5px] w-9 cursor-pointer">
-      <img src="/I1021-5500;531-1634.svg" alt="" className="w-full" />
-      <img src="/I1021-5500;531-1636.svg" alt="" className="w-full" />
-      <img src="/I1021-5500;531-1638.svg" alt="" className="w-full" />
-    </div>
-  );
-}
+const LinkedInIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+);
 
-// CTA Button Gold
-function CTAButtonGold({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <button className={`w-[264px] px-2.5 py-[5px] flex flex-col justify-center items-center ${className}`}>
-      <div className="self-stretch px-[15px] py-1 bg-[#e2e3e4]/20 rounded-[40px] border border-[#e6c364] backdrop-blur-sm flex justify-center items-center">
-        <span className="w-[237px] text-center text-[#fdfdfd] text-base font-normal font-['Manrope']">{children}</span>
-      </div>
-    </button>
-  );
-}
-
-// CTA Button Blue Outline
-function CTAButtonBlue({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <button className={`w-[264px] px-2.5 py-[5px] flex flex-col justify-center items-center ${className}`}>
-      <div className="self-stretch px-[15px] py-1 bg-[#003f61]/20 rounded-[48px] border border-[#fffdfa] backdrop-blur-sm flex justify-center items-center">
-        <span className="w-[237px] text-center text-[#fffaf3] text-base font-normal font-['Ubuntu']">{children}</span>
-      </div>
-    </button>
-  );
-}
-
-// CTA Button Gradient
-function CTAButtonGradient({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <button className={`w-[314px] px-2.5 py-[5px] flex flex-col justify-center items-center ${className}`}>
-      <div className="self-stretch px-[15px] py-1 bg-gradient-to-r from-[#003f61] to-[#1a95d8] rounded-[40px] flex justify-center items-center">
-        <span className="text-center text-[#fffaf3] text-base font-normal font-['Ubuntu']">{children}</span>
-      </div>
-    </button>
-  );
-}
+const WhatsAppIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
 
 export default function Home() {
-  const [_menuOpen, setMenuOpen] = useState(false);
+  const [activeCase, setActiveCase] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const cases = [
+    {
+      label: "01",
+      title: "E-Commerce de Moda",
+      subtitle: "Do E-commerce de enfeite à uma máquina de vendas diárias.",
+      description: "Aplicamos estratégias de conteúdos e anúncios, validamos nossos criativos e canais de conversão, o resultado: +R$3.000 de vendas diárias.",
+      tags: ["Meta Ads", "Google Ads", "Estratégia"],
+      stats: [
+        { label: "ROAS médio:", value: "6,5x" },
+        { label: "Investimento Total:", value: "R$55.528,73" },
+        { label: "Faturamento Total:", value: "R$365.201,92" },
+      ],
+    },
+    {
+      label: "02",
+      title: "Empresa de Serviços",
+      subtitle: "De leads frios para contratos fechados com consistência.",
+      description: "Estruturamos o funil de aquisição e implementamos automações de qualificação, transformando o processo de vendas.",
+      tags: ["Meta Ads", "CRM", "Automação"],
+      stats: [
+        { label: "Leads qualificados:", value: "+320%" },
+        { label: "Custo por lead:", value: "-45%" },
+        { label: "Taxa de fechamento:", value: "38%" },
+      ],
+    },
+    {
+      label: "03",
+      title: "E-Commerce de Saúde",
+      subtitle: "Crescimento sustentável com margens saudáveis.",
+      description: "Implementamos rastreamento server-side e otimizamos campanhas com dados precisos, resultando em crescimento consistente.",
+      tags: ["Google Ads", "Analytics", "CRO"],
+      stats: [
+        { label: "ROAS médio:", value: "4,8x" },
+        { label: "Investimento Total:", value: "R$28.000,00" },
+        { label: "Faturamento Total:", value: "R$134.400,00" },
+      ],
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#001a29] flex flex-col items-center">
-      <div className="w-full max-w-[390px] mx-auto overflow-hidden">
+    <div style={{ fontFamily: "'Manrope', sans-serif", background: "#001a29", color: "#fdfdfd", overflowX: "hidden" }}>
 
-        {/* ===== HEADER / HERO SECTION ===== */}
-        <section className="w-full bg-[#001a29] relative">
-          {/* Navbar */}
-          <div className="w-full px-[10px] pt-[14px]">
-            <div className="w-[370px] h-[55px] bg-neutral-50/25 rounded-[5px] border border-[#fdfdfd]/60 flex items-center justify-between px-3">
-              <GGLogo />
-              <div onClick={() => setMenuOpen(prev => !prev)}>
-                <HamburgerIcon />
+      {/* ===== NAVBAR ===== */}
+      <header style={{
+        background: "#001a29",
+        borderBottom: "1px solid rgba(253,253,253,0.1)",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+      }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 24px", maxWidth: 1280, margin: "0 auto" }}>
+          {/* Logo */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <GGLogoIcon />
+            <div>
+              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.08em", color: "#fdfdfd", lineHeight: 1.1 }}>GRUPO</div>
+              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, letterSpacing: "0.08em", color: "#fdfdfd", lineHeight: 1.1 }}>GALPÃO</div>
+            </div>
+          </div>
+
+          {/* Desktop Nav */}
+          <nav style={{ display: "flex", gap: 32, alignItems: "center" }} className="hidden-mobile">
+            <a href="#metodologia" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Metodologia</a>
+            <a href="#cases" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Cases</a>
+            <a href="#roadmap" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>RoadMap</a>
+            <a href="#quem-faz" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Quem Somos</a>
+            <a href="#blog" style={{ color: "#fdfdfd", textDecoration: "none", fontSize: 14, fontWeight: 500, opacity: 0.85 }}>Blog</a>
+            <button className="btn-pill" style={{ fontSize: 14, padding: "8px 20px" }}>Agendar Reunião</button>
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: 5, padding: 4 }}
+            className="show-mobile"
+          >
+            <span style={{ display: "block", width: 28, height: 2, background: "#fdfdfd", borderRadius: 2 }}></span>
+            <span style={{ display: "block", width: 28, height: 2, background: "#fdfdfd", borderRadius: 2 }}></span>
+            <span style={{ display: "block", width: 28, height: 2, background: "#fdfdfd", borderRadius: 2 }}></span>
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div style={{ background: "#001d33", padding: "16px 24px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+            {["Metodologia", "Cases", "RoadMap", "Quem Somos", "Blog"].map((item) => (
+              <a key={item} href="#" onClick={() => setMenuOpen(false)} style={{ display: "block", color: "#fdfdfd", textDecoration: "none", padding: "10px 0", fontSize: 16, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>{item}</a>
+            ))}
+            <button className="btn-pill" style={{ marginTop: 16, width: "100%" }}>Agendar Reunião</button>
+          </div>
+        )}
+      </header>
+
+      {/* ===== HERO SECTION ===== */}
+      <section style={{ background: "#001a29", padding: "60px 0 80px", position: "relative", overflow: "hidden" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
+            {/* Left: Text */}
+            <div>
+              <h1 style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 5vw, 60px)",
+                lineHeight: 1.15,
+                color: "#fdfdfd",
+                margin: "0 0 24px",
+              }}>
+                Clareza para decidir. Segurança para crescer.
+              </h1>
+              <p style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: "clamp(16px, 1.5vw, 19px)",
+                fontWeight: 500,
+                color: "#fdfdfd",
+                lineHeight: 1.6,
+                margin: "0 0 40px",
+                opacity: 0.9,
+              }}>
+                A maioria das empresas tenta anunciar sem estrutura. Nós organizamos dados, criativos, canais e ofertas para crescer de forma sustentável.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+                <button className="btn-pill">Quero agendar uma reunião</button>
+                <button className="btn-pill">Quero conhecer o Método</button>
+              </div>
+            </div>
+
+            {/* Right: Hero image */}
+            <div style={{ position: "relative" }}>
+              <div style={{ position: "relative", borderRadius: 12, overflow: "hidden" }}>
+                <img
+                  src={IMAGES.hero}
+                  alt="Hero background"
+                  style={{ width: "100%", height: 340, objectFit: "cover", display: "block", borderRadius: 12 }}
+                />
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(0, 63, 97, 0.75)",
+                  borderRadius: 12,
+                }} />
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Hero Image */}
-          <div className="relative mx-[19px] mt-[18px] rounded-[11px] overflow-hidden" style={{ width: "352px", height: "291px" }}>
-            <img
-              src="/1021-5537.webp"
-              alt="Hero"
-              className="absolute inset-0 w-full h-full object-cover rounded-[11px]"
-            />
-            <div className="absolute inset-0 bg-[#003f61]/80 rounded-[11px]" />
-          </div>
+      {/* ===== CLIENTS SECTION ===== */}
+      <section style={{ background: "#001a29", paddingBottom: 60 }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(24px, 3vw, 36px)",
+            color: "#fdfdfd",
+            textAlign: "center",
+            marginBottom: 40,
+          }}>
+            Quem já cresceu com o Grupo Galpão
+          </h2>
 
-          {/* Hero Text */}
-          <div className="px-7 mt-4">
-            <h1 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-              Clareza para decidir. Segurança para crescer.
-            </h1>
-            <p className="text-neutral-50 text-[19px] font-medium font-['Manrope'] mt-3 leading-snug">
-              A maioria das empresas tenta anunciar sem estrutura. Nós organizamos dados, criativos, canais e ofertas para crescer de forma sustentável.
-            </p>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col items-center gap-3 mt-5 pb-8">
-            <CTAButtonGold>Quero agendar uma reunião</CTAButtonGold>
-            <CTAButtonBlue>Quero conhecer o Método</CTAButtonBlue>
-          </div>
-        </section>
-
-        {/* ===== QUEM JÁ CRESCEU ===== */}
-        <section className="w-full bg-[#001a29] pt-4 pb-0">
-          <div className="px-7 pb-4">
-            <h2 className="text-[#fdfdfd] text-[28px] font-bold font-['Ubuntu']">
-              Quem já cresceu com o Grupo Galpão
-            </h2>
-          </div>
-
-          {/* Client Logos */}
-          <div className="flex items-center justify-between px-5 py-2 gap-2">
-            <OffRioLogo />
-            <img src="/I1013-2955;574-2849.webp" alt="Vitacon" className="h-[30px] w-auto object-contain" />
-            <img src="/I1013-2954;574-2845.webp" alt="Recrie" className="h-[67px] w-auto object-contain" />
-          </div>
-
-          {/* Stats Banner */}
-          <div className="w-full mt-4 bg-gradient-to-l from-[#001a29] via-[#003f61] to-[#001a29] py-4">
-            <div className="px-7 flex items-center gap-4">
-              <span className="text-[#fdfdfd] text-[40px] font-bold font-['Ubuntu'] leading-none">+R$2mi</span>
-              <span className="text-[#fdfdfd] text-base font-normal font-['Manrope']">
-                Investidos em anúncios no Meta Ads
+          {/* Logos */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 60, flexWrap: "wrap", marginBottom: 48 }}>
+            {/* OffRio */}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 28, color: "#fdfdfd", letterSpacing: "-0.02em" }}>
+                <span style={{ color: "#fdfdfd" }}>OFF</span><span style={{ color: "#fdfdfd" }}>Rio</span>
               </span>
             </div>
-          </div>
-        </section>
-
-        {/* ===== METODOLOGIA ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-7">
-          <h2 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-            Metodologia construída na prática. Decisões baseadas em dados.
-          </h2>
-          <p className="text-[#e2e3e4] text-[19px] font-medium font-['Manrope'] mt-4 leading-snug">
-            Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
-          </p>
-        </section>
-
-        {/* ===== PERFORMANCE+ INTRO ===== */}
-        <section className="relative w-full bg-[#001a29] py-10 overflow-hidden">
-          {/* Background decorative circles */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute" style={{ left: "-252px", top: "376px", width: "738px", height: "302px", background: "#45bdfe" }} />
-            <div className="absolute rounded-full" style={{ left: "-110px", top: "475px", width: "596px", height: "450px", background: "#45bdfe" }} />
-            <div className="absolute rounded-full" style={{ left: "-110px", top: "0px", width: "596px", height: "450px", background: "#45bdfe" }} />
-            <img src="/I1013-1551;7-23.svg" alt="" className="absolute opacity-20" style={{ left: "-252px", top: "129px", width: "506px", height: "578px" }} />
+            {/* Vitacon */}
+            <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 30, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+            {/* Recrie */}
+            <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 50, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
           </div>
 
-          <div className="relative z-10 px-[42px]">
-            <PerformancePlusLogo />
-            <p className="text-[#fdfdfd] text-[19px] font-medium font-['Manrope'] leading-snug mt-4">
-              O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
-            </p>
+          {/* Stat */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 16 }}>
+            <span style={{
+              fontFamily: "'Ubuntu', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(36px, 5vw, 56px)",
+              color: "#fdfdfd",
+            }}>+R$2mi</span>
+            <span style={{
+              fontFamily: "'Manrope', sans-serif",
+              fontSize: 16,
+              color: "#fdfdfd",
+              opacity: 0.85,
+              lineHeight: 1.4,
+            }}>Investidos em anúncios<br />no Meta Ads</span>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== FLUXOGRAMA PERFORMANCE+ ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-5">
-          <div className="relative">
-            {/* Center vertical line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#fdfdfd]/30 rounded transform -translate-x-1/2" />
+      {/* ===== PERFORMANCE+ SECTION (blue bg) ===== */}
+      <section id="metodologia" style={{ background: "#1b9ce3", borderRadius: "60px 60px 0 0", padding: "60px 0 80px" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
-            <div className="flex flex-col gap-8">
+          {/* Logo Performance+ */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32, justifyContent: "center" }}>
+            <div style={{
+              width: 56,
+              height: 56,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <path d="M28 8L50 46H6L28 8Z" fill="white" opacity="0.95"/>
+                <text x="36" y="32" fill="white" fontSize="18" fontWeight="900" fontFamily="Ubuntu">+</text>
+              </svg>
+            </div>
+            <span style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 42px)", color: "#fdfdfd" }}>Performance+</span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+            {/* Left: Description */}
+            <div>
+              <h2 style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(28px, 3.5vw, 44px)",
+                color: "#fdfdfd",
+                lineHeight: 1.2,
+                marginBottom: 24,
+              }}>
+                Metodologia construída na prática. Decisões baseadas em dados.
+              </h2>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", lineHeight: 1.6, marginBottom: 24 }}>
+                Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
+              </p>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", lineHeight: 1.6, marginBottom: 32 }}>
+                O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
+              </p>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", lineHeight: 1.7, marginBottom: 32, fontStyle: "italic" }}>
+                Entregamos estrutura e mensuração real da sua empresa, evidenciando os impactos do marketing na sua margem de lucro, onde investir e quais os próximos passos a seguir.
+              </p>
+              <button className="btn-pill" style={{ borderColor: "#001a29", color: "#001a29", background: "rgba(0,26,41,0.1)" }}>
+                Quero saber mais detalhes
+              </button>
+            </div>
+
+            {/* Right: 5 pillars timeline */}
+            <div style={{ position: "relative" }}>
+              {/* Vertical line */}
+              <div style={{
+                position: "absolute",
+                left: "50%",
+                top: 0,
+                bottom: 0,
+                width: 2,
+                background: "rgba(255,255,255,0.3)",
+                transform: "translateX(-50%)",
+              }} />
+
               {[
-                { num: "1", title: "Infraestrutura\nde Dados", desc: "Nossa base, sem mensuração de dados real, não há espaço para otimização.", side: "left" },
-                { num: "2", title: "Estruturação\nde Criativos", desc: "Tenha certeza que seu anúncio está conversando com seu público.", side: "right" },
-                { num: "3", title: "Otimização de\nCanais e CRO", desc: "Análise técnica de funil, e otimizações nas taxas de conversão.", side: "left" },
-                { num: "4", title: "Retenção e\nRecorrência", desc: "Mais lucro a partir da base de clientes existente.", side: "right" },
+                { num: "1", title: "Infraestrutura de Dados", desc: "Nossa base, sem mensuração de dados real, não há espaço para otimização.", side: "left" },
+                { num: "2", title: "Estruturação de Criativos", desc: "Tenha certeza que seu anúncio está conversando com seu público.", side: "right" },
+                { num: "3", title: "Otimização de Canais e CRO", desc: "Análise técnica de funil, e otimizações nas taxas de conversão.", side: "left" },
+                { num: "4", title: "Retenção e Recorrência", desc: "Mais lucro a partir da base de clientes existente.", side: "right" },
                 { num: "5", title: "Metas S.M.A.R.T.", desc: "Transformar dados em Metas ambiciosas e realistas.", side: "left" },
               ].map((pillar, i) => (
-                <div key={i} className={`flex items-start gap-4 ${pillar.side === "right" ? "flex-row-reverse" : ""}`}>
-                  <div className="relative z-10 flex-shrink-0 w-8 flex items-center justify-center">
-                    <span className="text-[#e6c364] text-2xl font-bold font-['Ubuntu']">{pillar.num}</span>
+                <div key={i} style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 0,
+                  marginBottom: i < 4 ? 32 : 0,
+                  flexDirection: pillar.side === "left" ? "row" : "row-reverse",
+                }}>
+                  {/* Text */}
+                  <div style={{ flex: 1, textAlign: pillar.side === "left" ? "right" : "left", padding: pillar.side === "left" ? "0 20px 0 0" : "0 0 0 20px" }}>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#fdfdfd", marginBottom: 4 }}>{pillar.title}</div>
+                    <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#fdfdfd", opacity: 0.85, lineHeight: 1.5 }}>{pillar.desc}</div>
                   </div>
-                  <div className={`flex-1 ${pillar.side === "right" ? "text-left pl-2" : "text-right pr-2"}`}>
-                    <h3 className="text-[#fdfdfd] text-[19px] font-bold font-['Ubuntu'] whitespace-pre-line leading-tight">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-black text-sm font-normal font-['Manrope'] mt-1 bg-white/90 rounded p-1.5">
-                      {pillar.desc}
-                    </p>
+                  {/* Number circle */}
+                  <div style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    background: "#e6c364",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "'Ubuntu', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 18,
+                    color: "#001a29",
+                    flexShrink: 0,
+                    zIndex: 1,
+                    position: "relative",
+                  }}>
+                    {pillar.num}
                   </div>
+                  {/* Empty space */}
+                  <div style={{ flex: 1 }} />
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10 text-center px-2">
-            <p className="text-[#fdfdfd] text-[19px] font-normal font-['Manrope'] leading-snug">
-              Entregamos estrutura e mensuração real da sua empresa, evidenciando os impactos do marketing na sua margem de lucro, onde investir e quais os próximos passos a seguir.
-            </p>
-          </div>
-        </section>
+      {/* ===== DADOS SEM ESTRATÉGIA ===== */}
+      <section id="cases" style={{ background: "#ffffff", padding: "80px 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+            {/* Left */}
+            <div>
+              <h2 style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(28px, 4vw, 52px)",
+                color: "#001a29",
+                lineHeight: 1.15,
+                marginBottom: 24,
+              }}>
+                Dados sem estratégia são só números.<br />
+                Estratégia sem dados é palpite.
+              </h2>
+              <p style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 18,
+                color: "#1b9ce3",
+                lineHeight: 1.6,
+                marginBottom: 40,
+              }}>
+                É nesse encontro que crescimento deixa de ser acidente e vira processo.
+              </p>
 
-        {/* ===== DADOS SEM ESTRATÉGIA ===== */}
-        <section className="w-full bg-white py-10 px-7">
-          <h2 className="text-[#003f61] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-            Dados sem estratégia são só números.<br />
-            Estratégia sem dados é palpite.
-          </h2>
-          <p className="text-[#1f8cc6] text-[19px] font-medium font-['Manrope'] mt-4 leading-snug">
-            É nesse encontro que crescimento deixa de ser acidente e vira processo.
-          </p>
-          <h3 className="text-[#0d6ca0] text-[28px] font-bold font-['Ubuntu'] mt-4">Alguns Resultados</h3>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 24, color: "#001a29", marginBottom: 24 }}>
+                Alguns Resultados
+              </h3>
 
-          <div className="flex justify-center mt-6">
-            <CTAButtonGradient>Quero saber mais detalhes</CTAButtonGradient>
-          </div>
-        </section>
-
-        {/* ===== CASES 01 ===== */}
-        <section className="w-full bg-[#001a29]">
-          <div className="relative w-full overflow-hidden" style={{ height: "378px" }}>
-            {/* Background image */}
-            <img
-              src="/1014-4040.webp"
-              alt="E-Commerce de Moda"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-
-            {/* Top colored tabs */}
-            <div className="absolute top-0 left-0 flex">
-              <div className="w-[60px] h-[38px] bg-[#003f61] flex items-center justify-center">
-                <span className="text-white text-[28px] font-bold font-['Ubuntu']">01</span>
-              </div>
-              <div className="w-[60px] h-[38px] bg-[#0d6ca0] flex items-center justify-center">
-                <span className="text-white text-[28px] font-bold font-['Ubuntu']">02</span>
-              </div>
-              <div className="w-[60px] h-[38px] bg-[#1f8cc6] flex items-center justify-center">
-                <span className="text-white text-[28px] font-bold font-['Ubuntu']">03</span>
+              {/* Case tabs */}
+              <div style={{ display: "flex", gap: 0, marginBottom: 0 }}>
+                {cases.map((c, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveCase(i)}
+                    style={{
+                      padding: "8px 20px",
+                      fontFamily: "'Ubuntu', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 16,
+                      cursor: "pointer",
+                      border: "none",
+                      background: i === activeCase ? "#001a29" : i === 1 ? "#003f61" : "#1b9ce3",
+                      color: "#fdfdfd",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    {c.label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Content overlay */}
-            <div className="absolute inset-0 bg-[#003f61]/70 top-[38px]" />
-            <div className="absolute px-7 flex flex-col justify-start" style={{ top: "49px", left: 0, right: 0 }}>
-              <h3 className="text-[#e6c364] text-2xl font-bold font-['Ubuntu']">E-Commerce de Moda</h3>
-              <p className="text-[#ffeebf] text-[19px] font-normal font-['Ubuntu'] mt-2 leading-snug">
-                Do E-commerce de enfeite à uma máquina de vendas diárias.
+            {/* Right: Active case */}
+            <div style={{
+              background: "#001a29",
+              borderRadius: 8,
+              padding: 32,
+              color: "#fdfdfd",
+            }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 22, color: "#e6c364", marginBottom: 8 }}>
+                {cases[activeCase].title}
+              </h3>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", marginBottom: 16, lineHeight: 1.5 }}>
+                {cases[activeCase].subtitle}
               </p>
-              <p className="text-[#fdfdfd] text-base font-medium font-['Manrope'] mt-3 leading-snug">
-                Aplicamos estratégias de conteúdos e anúncios, validamos nossos criativos e canais de conversão, o resultado: +R$3.000 de vendas diárias.
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd", opacity: 0.85, marginBottom: 24, lineHeight: 1.6 }}>
+                {cases[activeCase].description}
               </p>
 
               {/* Tags */}
-              <div className="flex items-center gap-2 mt-4">
-                <div className="border border-white px-2 py-0.5">
-                  <span className="text-[#fdfdfd] text-sm font-normal font-['Manrope']">Meta Ads</span>
-                </div>
-                <div className="border border-white px-2 py-0.5">
-                  <span className="text-[#fdfdfd] text-sm font-normal font-['Manrope']">Google Ads</span>
-                </div>
-                <div className="border border-white px-2 py-0.5">
-                  <span className="text-[#fdfdfd] text-sm font-normal font-['Manrope']">Estratégia</span>
-                </div>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+                {cases[activeCase].tags.map((tag, i) => (
+                  <span key={i} style={{
+                    padding: "4px 12px",
+                    border: "1px solid rgba(253,253,253,0.3)",
+                    borderRadius: 4,
+                    fontSize: 13,
+                    fontFamily: "'Manrope', sans-serif",
+                    color: "#fdfdfd",
+                  }}>{tag}</span>
+                ))}
               </div>
 
               {/* Stats */}
-              <div className="mt-4 flex flex-col gap-1">
-                <p className="text-[#fdfdfd] text-base font-medium font-['Manrope']">ROAS médio: 6,5x</p>
-                <p className="text-[#fdfdfd] text-base font-medium font-['Manrope']">Investimento Total: R$55.528,73</p>
-                <p className="text-[#fdfdfd] text-base font-medium font-['Manrope']">Faturamento Total: R$365.201,92</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {cases[activeCase].stats.map((stat, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ color: "#e6c364", fontSize: 16 }}>▶</span>
+                    <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd" }}>
+                      {stat.label} <strong>{stat.value}</strong>
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== PERFORMANCE+ PARA CADA TIPO ===== */}
-        <section className="w-full bg-white py-10 px-7">
-          <h2 className="text-[#003f61] text-[34px] font-bold font-['Ubuntu'] leading-tight">
+      {/* ===== PERFORMANCE+ PARA CADA TIPO ===== */}
+      <section style={{ background: "#ffffff", padding: "0 0 80px" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 48px)",
+            color: "#001a29",
+            textAlign: "center",
+            marginBottom: 48,
+          }}>
             Performance+ para cada tipo de negócio
           </h2>
 
-          <div className="mt-6 flex flex-col gap-4">
-            {/* Performance+ Ecomm */}
-            <div className="w-full bg-[#001a29] rounded-xl p-6 flex flex-col items-center">
-              <PerformanceEcommLogo />
-              <p className="text-white text-base font-normal font-['Manrope'] text-center mt-3">
-                Seu E-Commerce lucrando 24h,<br />7 dias por semana.
-              </p>
-              <CTAButtonGold className="mt-4">Ver detalhes</CTAButtonGold>
-            </div>
-
-            {/* Performance+ Leads */}
-            <div className="w-full bg-[#001a29] rounded-xl p-6 flex flex-col items-center">
-              <PerformanceLeadsLogo />
-              <p className="text-white text-base font-normal font-['Manrope'] text-center mt-3">
-                Mais contratos fechados, menos coleção de Leads aleatórios.
-              </p>
-              <CTAButtonGold className="mt-4">Ver detalhes</CTAButtonGold>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== ROADMAP PERFORMANCE+ ===== */}
-        <section className="relative w-full bg-[#001a29] py-10 px-7 overflow-hidden">
-          {/* Background Logo watermark */}
-          <div className="absolute pointer-events-none opacity-10" style={{ left: "-99px", top: "0px", width: "722px", height: "1620px" }}>
-            <img src="/I1024-6042;7-23.svg" alt="" className="absolute" style={{ left: "216px", top: "161px", width: "506px", height: "578px" }} />
-          </div>
-
-          <div className="relative z-10">
-            <h2 className="text-[#fdfdfd] text-[28px] font-bold font-['Ubuntu'] leading-tight">
-              Fluxo de Trabalho: RoadMap Performance+
-            </h2>
-
-            <div className="mt-8 flex flex-col gap-6">
-              {[
-                { icon: "/I1014-3210;1012-723.svg", title: "Setup Inicial", desc: "Tracking Web + Server-side, CRM e organização de dados. Objetivo: confiança nos dados." },
-                { icon: "/I1022-5675;1022-5568.svg", title: "Análise de Funil", desc: "Identificar taxas de conversão e principais gargalos. Objetivo: Otimização dos pontos de melhoria." },
-                { icon: null, title: "Estruturação de Criativos", desc: "Ângulos, conceitos e hooks + testes A/B. Objetivo: validar criativos." },
-                { icon: "/I1022-5686;1022-5599.svg", title: "Otimização de Canais", desc: "CRO e testes A/B de UI/UX. Objetivo: maximizar taxas de conversão." },
-                { icon: "/I1032-6177;1032-6154.svg", title: "Fidelização", desc: "Pós-venda e aumento de LTV. Objetivo: extrair o máximo de valor." },
-                { icon: "/I1022-5656;1022-5580.svg", title: "Expansão", desc: "Metas S.M.A.R.T. e projeções. Objetivo: planejar o futuro." },
-              ].map((step, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="relative flex-shrink-0">
-                    <div className="w-[50px] h-[50px] bg-[#0d6ca0] rounded-full flex items-center justify-center">
-                      {step.icon ? (
-                        <img src={step.icon} alt="" className="w-7 h-7 object-contain" />
-                      ) : (
-                        <span className="text-white text-sm font-bold font-['Ubuntu']">{i + 1}</span>
-                      )}
-                    </div>
-                    {i < 5 && (
-                      <div className="absolute left-1/2 top-full w-0.5 h-6 bg-[#003f61] transform -translate-x-1/2" />
-                    )}
-                  </div>
-                  <div className="flex-1 pt-1">
-                    <h3 className="text-[#fdfdfd] text-[19px] font-bold font-['Ubuntu']">{step.title}</h3>
-                    <p className="text-[#e2e3e4] text-base font-normal font-['Manrope'] mt-1 leading-snug">
-                      {step.desc}
-                    </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            {/* Ecomm card */}
+            <div style={{
+              background: "#001a29",
+              borderRadius: 8,
+              overflow: "hidden",
+              position: "relative",
+            }}>
+              <img src={IMAGES.caseEcomm} alt="Performance+ Ecomm" style={{ width: "100%", height: 200, objectFit: "cover", opacity: 0.4 }} />
+              <div style={{ padding: 32 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
+                    <text x="30" y="28" fill="white" fontSize="14" fontWeight="900" fontFamily="Ubuntu">+</text>
+                  </svg>
+                  <div>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Performance+</div>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Ecomm</div>
                   </div>
                 </div>
-              ))}
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", marginBottom: 24, lineHeight: 1.5, textAlign: "center" }}>
+                  Seu E-Commerce lucrando 24h,<br />7 dias por semana.
+                </p>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <button className="btn-pill">Ver detalhes</button>
+                </div>
+              </div>
+            </div>
+
+            {/* Leads card */}
+            <div style={{
+              background: "#001a29",
+              borderRadius: 8,
+              overflow: "hidden",
+              position: "relative",
+            }}>
+              <img src={IMAGES.caseLeads} alt="Performance+ Leads" style={{ width: "100%", height: 200, objectFit: "cover", opacity: 0.4 }} />
+              <div style={{ padding: 32 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
+                    <text x="30" y="28" fill="white" fontSize="14" fontWeight="900" fontFamily="Ubuntu">+</text>
+                  </svg>
+                  <div>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Performance+</div>
+                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Leads</div>
+                  </div>
+                </div>
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", marginBottom: 24, lineHeight: 1.5, textAlign: "center" }}>
+                  Mais contratos fechados, menos<br />coleção de Leads aleatórios.
+                </p>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <button className="btn-pill">Ver detalhes</button>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== ESTRATÉGIAS ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-3">
-          <div className="flex justify-center mb-6">
-            <CTAButtonGold>Quero agendar uma reunião</CTAButtonGold>
+      {/* ===== ROADMAP SECTION ===== */}
+      <section id="roadmap" style={{ background: "#001a29", padding: "80px 0", borderRadius: "60px 60px 0 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 48px)",
+            color: "#fdfdfd",
+            textAlign: "center",
+            marginBottom: 56,
+          }}>
+            Fluxo de Trabalho:<br />RoadMap Performance+
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
+            {[
+              {
+                icon: "⚙️",
+                title: "Setup Inicial",
+                desc: "Tracking Web + Server-side, CRM e organização de dados. Objetivo: confiança nos dados.",
+              },
+              {
+                icon: "🔍",
+                title: "Análise de Funil",
+                desc: "Identificar taxas de conversão e principais gargalos. Objetivo: Otimização dos pontos de melhoria.",
+              },
+              {
+                icon: "📢",
+                title: "Estruturação de Criativos",
+                desc: "Ângulos, conceitos e hooks + testes A/B. Objetivo: validar criativos.",
+              },
+              {
+                icon: "💰",
+                title: "Otimização de Canais",
+                desc: "CRO e testes A/B de UI/UX. Objetivo: maximizar taxas de conversão.",
+              },
+              {
+                icon: "👍",
+                title: "Fidelização",
+                desc: "Pós-venda e aumento de LTV. Objetivo: extrair o máximo de valor.",
+              },
+              {
+                icon: "🎯",
+                title: "Expansão",
+                desc: "Metas S.M.A.R.T. e projeções. Objetivo: planejar o futuro.",
+              },
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+                <div style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: "50%",
+                  background: "#0d6ca0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 22,
+                  flexShrink: 0,
+                }}>
+                  {item.icon}
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#fdfdfd", marginBottom: 6 }}>{item.title}</div>
+                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.8, lineHeight: 1.6 }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="w-full border border-[#003f61] rounded-xl p-6 mb-4 mx-2">
-            <h3 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-              Estratégias de ponta a ponta
-            </h3>
-            <ul className="mt-4 flex flex-col gap-2">
-              {[
-                "Direção estratégica digital e offline.",
-                "Análise de Funis e Identificação de Gargalos",
-                "Decisões tomadas a partir de análise de dados.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-[#45bdfe] mt-1 flex-shrink-0">•</span>
-                  <span className="text-[#fdfdfd] text-sm font-medium font-['Manrope']">{item}</span>
-                </li>
-              ))}
-            </ul>
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <button className="btn-pill">Quero agendar uma reunião</button>
           </div>
+        </div>
+      </section>
 
-          <div className="w-full border border-[#003f61] rounded-xl p-6 mb-6 mx-2">
-            <h3 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-              Soluções Personalizadas
-            </h3>
-            <ul className="mt-4 flex flex-col gap-2">
-              {[
-                "Estruturação conforme seu tamanho.",
-                "Para iniciantes, empresas em crescimento ou em alta escala.",
-                "Imersão completa no seu negócio.",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-[#45bdfe] mt-1 flex-shrink-0">•</span>
-                  <span className="text-[#fdfdfd] text-sm font-medium font-['Manrope']">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* ===== ESTRATÉGIAS E FERRAMENTAS ===== */}
+      <section style={{ background: "#001a29", padding: "0 0 80px" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
 
-          {/* Tools */}
-          <div className="w-full px-3">
-            <h3 className="text-[#fdfdfd] text-[28px] font-bold font-['Ubuntu'] text-center leading-tight mb-4">
-              Experiência com as maiores ferramentas e plataformas do mercado.
-            </h3>
-            <div className="flex items-center justify-center gap-6 flex-wrap">
-              <div className="relative overflow-hidden" style={{ width: "152px", height: "65px" }}>
-                {["I1024-5869;1024-5833.svg", "I1024-5869;1024-5834.svg", "I1024-5869;1024-5835.svg", "I1024-5869;1024-5836.svg", "I1024-5869;1024-5838.svg"].map((src, i) => (
-                  <img key={i} src={`/${src}`} alt="" className="absolute" style={{ height: "65px", width: "auto", left: `${i * 30}px`, top: "0px" }} />
+            {/* Estratégias de ponta a ponta */}
+            <div style={{ background: "#001d33", borderRadius: 8, padding: 32 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 22, color: "#fdfdfd", marginBottom: 24 }}>
+                Estratégias de ponta a ponta
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  "Direção estratégica digital e offline.",
+                  "Análise de Funis e Identificação de Gargalos",
+                  "Decisões tomadas a partir de análise de dados.",
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1b9ce3", marginTop: 6, flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd", opacity: 0.85, lineHeight: 1.5 }}>{item}</span>
+                  </div>
                 ))}
               </div>
-              <img src="/I1032-6148;1032-6146.webp" alt="Google Ads" className="h-11 w-auto object-contain" />
+            </div>
+
+            {/* Soluções Personalizadas */}
+            <div style={{ background: "#001d33", borderRadius: 8, padding: 32 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 22, color: "#fdfdfd", marginBottom: 24 }}>
+                Soluções Personalizadas
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {[
+                  "Estruturação conforme seu tamanho.",
+                  "Para iniciantes, empresas em crescimento ou em alta escala.",
+                  "Imersão completa no seu negócio.",
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1b9ce3", marginTop: 6, flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd", opacity: 0.85, lineHeight: 1.5 }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Ferramentas */}
+            <div style={{ background: "#001d33", borderRadius: 8, padding: 32 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd", marginBottom: 24, textAlign: "center" }}>
+                Experiência com as maiores ferramentas e plataformas do mercado.
+              </h3>
+              <div style={{ display: "flex", justifyContent: "center", gap: 24, alignItems: "center", marginBottom: 24, flexWrap: "wrap" }}>
+                {/* Meta */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", fontWeight: 600 }}>∞ Meta</span>
+                </div>
+                {/* Google Ads */}
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24">
+                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+                  </svg>
+                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", fontWeight: 600 }}>Google Ads</span>
+                </div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button className="btn-pill">Quero estruturar minha empresa</button>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="flex justify-center mt-6">
-            <CTAButtonGradient>Quero estruturar minha empresa</CTAButtonGradient>
-          </div>
-        </section>
-
-        {/* ===== NÃO SOMOS UMA AGÊNCIA ===== */}
-        <section className="w-full bg-white py-10 px-7">
-          <h2 className="text-[#003f61] text-[34px] font-bold font-['Ubuntu'] text-center leading-tight">
+      {/* ===== NÃO SOMOS UMA AGÊNCIA ===== */}
+      <section style={{ background: "#ffffff", padding: "80px 0", borderRadius: "60px 60px 0 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 52px)",
+            color: "#001a29",
+            textAlign: "center",
+            lineHeight: 1.2,
+            marginBottom: 16,
+          }}>
             Não somos uma agência. Somos o parceiro que você deveria ter contratado antes.
           </h2>
-          <p className="text-[#0d6ca0] text-[19px] font-medium font-['Manrope'] text-center mt-4 leading-snug">
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: 18,
+            color: "#001a29",
+            textAlign: "center",
+            marginBottom: 48,
+            opacity: 0.8,
+          }}>
             Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.
           </p>
 
-          <div className="mt-8 flex justify-around items-start">
-            <div className="flex flex-col items-center gap-2 w-[160px]">
-              <div className="relative overflow-hidden" style={{ width: "117px", height: "68px" }}>
-                {["I1024-5993;1013-1131.svg", "I1024-5993;1013-1133.svg", "I1024-5993;1013-1135.svg", "I1024-5993;1013-1137.svg", "I1024-5993;1013-1139.svg", "I1024-5993;1013-1141.svg"].map((src, i) => (
-                  <img key={i} src={`/${src}`} alt="" className="absolute" style={{ height: "68px", width: "auto", left: `${i * 20}px`, top: "0px" }} />
-                ))}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 40 }}>
+            {[
+              {
+                title: "Estrutura antes de Escala",
+                desc: "Organizamos seus dados, processos e canais antes de investir em escala. Crescimento sem base é desperdício.",
+              },
+              {
+                title: "Foco em Resultado",
+                desc: "Cada decisão é orientada por métricas reais. Sem vaidade de métricas, apenas o que impacta seu negócio.",
+              },
+              {
+                title: "Transparência Total",
+                desc: "Relatórios claros, linguagem acessível e acesso completo aos dados da sua operação.",
+              },
+              {
+                title: "Parceria de longo prazo",
+                desc: "Não somos fornecedores. Somos parte do seu time, comprometidos com o crescimento sustentável.",
+              },
+            ].map((item, i) => (
+              <div key={i} style={{ background: "#f8f9fa", borderRadius: 8, padding: 28, display: "flex", gap: 16, alignItems: "flex-start", border: "1px solid #e8e8e8" }}>
+                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#1b9ce3", marginTop: 8, flexShrink: 0 }} />
+                <div>
+                  <h4 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 18, color: "#001a29", marginBottom: 8 }}>{item.title}</h4>
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#001a29", opacity: 0.7, lineHeight: 1.6 }}>{item.desc}</p>
+                </div>
               </div>
-              <p className="text-[#003f61] text-[19px] font-bold font-['Ubuntu'] text-center leading-tight">
-                Estrutura antes de Escala
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-2 w-[100px]">
-              <div className="relative overflow-hidden" style={{ width: "87px", height: "73px" }}>
-                {["I1024-5942;1012-790.svg", "I1024-5942;1012-792.svg", "I1024-5942;1012-794.svg", "I1024-5942;1012-796.svg"].map((src, i) => (
-                  <img key={i} src={`/${src}`} alt="" className="absolute" style={{ height: "73px", width: "auto", left: `${i * 22}px`, top: "0px" }} />
-                ))}
-              </div>
-              <p className="text-[#003f61] text-[19px] font-bold font-['Ubuntu'] text-center leading-tight">
-                Foco em Resultado
-              </p>
-            </div>
+            ))}
           </div>
 
-          <div className="flex justify-center mt-8">
-            <CTAButtonGradient>Agendar reunião com Galpão</CTAButtonGradient>
+          <div style={{ textAlign: "center" }}>
+            <button className="btn-pill-dark">Agendar reunião com Galpão</button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== QUEM FAZ ===== */}
-        <section className="w-full bg-white py-10 px-7">
-          <h2 className="text-[#003f61] text-[34px] font-bold font-['Ubuntu'] text-center leading-tight">
+      {/* ===== QUEM FAZ O GRUPO GALPÃO ===== */}
+      <section id="quem-faz" style={{ background: "#001a29", padding: "80px 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 48px)",
+            color: "#fdfdfd",
+            textAlign: "center",
+            marginBottom: 56,
+          }}>
             Quem faz o Grupo Galpão
           </h2>
 
-          <div className="mt-8 flex flex-col gap-10">
-            {/* Vinícius Cruz */}
-            <div className="relative">
-              <div className="bg-[#001a29] rounded-[9px] p-4 ml-14 min-h-[76px] flex items-center">
-                <p className="text-[#fdfdfd] text-base font-normal font-['Manrope']">
-                  Especialista em Mídia Paga, Performance e Branding.
-                </p>
-              </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
+            {/* Vinicius */}
+            <div style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
               <img
-                src="/1014-3487.webp"
+                src={IMAGES.founderVinicius}
                 alt="Vinícius Cruz"
-                className="absolute -left-2 top-0 w-[120px] h-[120px] rounded-full object-cover"
+                style={{ width: 120, height: 120, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
               />
-              <div className="mt-3 ml-14">
-                <h3 className="text-[#003f61] text-2xl font-bold font-['Ubuntu']">Vinícius Cruz</h3>
-                <p className="text-[#0d6ca0] text-sm font-normal font-['Manrope'] mt-1 leading-snug">
+              <div>
+                <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#1b9ce3", marginBottom: 4, fontWeight: 500 }}>
+                  Especialista em Mídia Paga, Performance e Branding.
+                </div>
+                <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 24, color: "#fdfdfd", marginBottom: 12 }}>
+                  Vinícius Cruz
+                </h3>
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd", opacity: 0.8, lineHeight: 1.6 }}>
                   Atua no mercado publicitário desde 2012, mesclando conhecimentos em design e marketing estratégico.
                 </p>
               </div>
             </div>
 
-            {/* Rodrigo Gomes */}
-            <div className="relative">
-              <div className="bg-[#096699] rounded-[9px] p-4 mr-14 min-h-[76px] flex items-center">
-                <p className="text-[#fdfdfd] text-base font-normal font-['Manrope']">
-                  Especialista em Soluções Operacionais, Dados e Tecnologias
-                </p>
-              </div>
+            {/* Rodrigo */}
+            <div style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
               <img
-                src="/1014-3486.webp"
+                src={IMAGES.founderRodrigo}
                 alt="Rodrigo Gomes"
-                className="absolute -right-2 top-0 w-[120px] h-[120px] rounded-full object-cover"
+                style={{ width: 120, height: 120, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
               />
-              <div className="mt-3 mr-14 text-right">
-                <h3 className="text-[#003f61] text-2xl font-bold font-['Ubuntu']">Rodrigo Gomes</h3>
-                <p className="text-[#0d6ca0] text-sm font-normal font-['Manrope'] mt-1 leading-snug">
+              <div>
+                <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#1b9ce3", marginBottom: 4, fontWeight: 500 }}>
+                  Especialista em Soluções Operacionais, Dados e Tecnologias
+                </div>
+                <h3 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 24, color: "#fdfdfd", marginBottom: 12 }}>
+                  Rodrigo Gomes
+                </h3>
+                <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#fdfdfd", opacity: 0.8, lineHeight: 1.6 }}>
                   Atua no mercado desde 2011, construindo sua trajetória com foco em tecnologia, processos e eficiência operacional.
                 </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== NOSSOS PARCEIROS ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-7">
-          <h2 className="text-[#003f61] text-[34px] font-bold font-['Ubuntu'] leading-tight">
+      {/* ===== NOSSOS PARCEIROS ===== */}
+      <section style={{ background: "#ffffff", padding: "80px 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 48px)",
+            color: "#001a29",
+            textAlign: "center",
+            marginBottom: 16,
+          }}>
             Nossos Parceiros
           </h2>
-          <p className="text-[#fdfdfd] text-[19px] font-medium font-['Manrope'] mt-3 leading-snug">
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: 16,
+            color: "#001a29",
+            textAlign: "center",
+            marginBottom: 48,
+            opacity: 0.7,
+          }}>
             Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.
           </p>
 
-          <div className="mt-8 flex flex-col gap-8">
-            {/* Vendatech - Automação */}
-            <div>
-              <div className="relative overflow-hidden mb-2" style={{ width: "159px", height: "24px" }}>
-                {["I1014-3538;944-839.svg", "I1014-3538;944-840.svg", "I1014-3538;944-841.svg", "I1014-3538;944-842.svg", "I1014-3538;944-843.svg", "I1014-3538;944-844.svg", "I1014-3538;944-845.svg", "I1014-3538;944-846.svg", "I1014-3538;944-847.svg", "I1014-3538;944-848.svg", "I1014-3538;944-849.svg", "I1014-3538;944-850.svg", "I1014-3538;944-851.svg"].map((src, i) => (
-                  <img key={i} src={`/${src}`} alt="" className="absolute" style={{ height: "24px", width: "auto", left: `${i * 12}px`, top: "0px" }} />
-                ))}
-              </div>
-              <h3 className="text-[#003f61] text-2xl font-bold font-['Ubuntu']">Soluções em Automação</h3>
-              <p className="text-[#fdfdfd] text-sm font-medium font-['Manrope'] mt-2 leading-snug">
-                Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.
-              </p>
-            </div>
-
-            {/* Leões - Produção de Conteúdo */}
-            <div>
-              <img src="/I1014-3537;944-853.webp" alt="Leões" className="w-[109px] h-auto mb-2" />
-              <h3 className="text-[#003f61] text-2xl font-bold font-['Ubuntu']">Soluções em Produção de Conteúdo</h3>
-              <p className="text-[#fdfdfd] text-sm font-medium font-['Manrope'] mt-2 leading-snug">
-                Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.
-              </p>
-            </div>
-
-            {/* UXP - Recursos Web */}
-            <div className="bg-white rounded-xl p-4">
-              <div className="flex items-center gap-4">
-                <div className="relative overflow-hidden flex-shrink-0" style={{ width: "150px", height: "90px" }}>
-                  {["I1031-6102;945-874.svg", "I1031-6102;945-875.svg", "I1031-6102;945-876.svg", "I1031-6102;945-877.svg", "I1031-6102;945-878.svg", "I1031-6102;945-879.svg", "I1031-6102;945-880.svg"].map((src, i) => (
-                    <img key={i} src={`/${src}`} alt="" className="absolute" style={{ height: "90px", width: "auto", left: `${i * 22}px`, top: "0px" }} />
-                  ))}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+            {[
+              {
+                logo: IMAGES.logoLeoes,
+                title: "Soluções em Automação",
+                desc: "Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.",
+              },
+              {
+                logo: null,
+                logoText: "LEO\nOES",
+                title: "Soluções em Produção de Conteúdo",
+                desc: "Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.",
+              },
+              {
+                logo: null,
+                logoText: "U\nxp",
+                title: "Soluções em Recursos Web",
+                desc: "Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.",
+              },
+            ].map((partner, i) => (
+              <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+                <div style={{ width: 60, height: 60, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {partner.logo ? (
+                    <img src={partner.logo} alt={partner.title} style={{ width: 60, height: 60, objectFit: "contain" }} />
+                  ) : (
+                    <div style={{
+                      width: 60,
+                      height: 60,
+                      background: "#001a29",
+                      borderRadius: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "'Ubuntu', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 12,
+                      color: "#fdfdfd",
+                      textAlign: "center",
+                      lineHeight: 1.2,
+                    }}>
+                      {partner.logoText}
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <h3 className="text-black text-2xl font-bold font-['Ubuntu']">Soluções em Recursos Web</h3>
-                  <p className="text-[#00131d] text-sm font-medium font-['Manrope'] mt-1 leading-snug">
-                    Sem promessas motivacionais. Sem fórmulas genéricas. Mas com método, responsabilidade e foco no seu crescimento real.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== O QUE FALTA PARA DESTRAVAR ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-7">
-          <h2 className="text-[#e6c364] text-[34px] font-bold font-['Ubuntu'] text-center leading-tight">
-            O que falta para você destravar?
-          </h2>
-          <p className="text-[#f4f5f5] text-[19px] font-medium font-['Manrope'] text-center mt-4 leading-snug">
-            A reunião é gratuita e sem obrigação de contratação. Em menos de 90 minutos, você terá um diagnóstico claro sobre onde sua operação de marketing pode evoluir.
-          </p>
-          <div className="flex justify-center mt-8">
-            <CTAButtonGold>Agendar reunião com Galpão</CTAButtonGold>
-          </div>
-        </section>
-
-        {/* ===== BLOG ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-7">
-          <h2 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-            Nossas últimas postagens
-          </h2>
-
-          <div className="mt-6 flex flex-col gap-3">
-            {[
-              "A Nova Era dos Criativos: Como Estruturar seus Anúncios em 2026",
-              "Do Caos à Clareza: Como Transformar Dados em Decisões Estratégicas",
-              "Server-side Tracking: Como Garantir Qualidade de Dados e Otimizar Resultados.",
-            ].map((title, i) => (
-              <div key={i} className="bg-[#d9d9d9]/10 rounded-[7px] p-3 flex items-center gap-3">
-                <div className="w-[92px] h-[83px] bg-[#45bdfe] flex-shrink-0 rounded" />
-                <div className="flex-1">
-                  <h3 className="text-[#fdfdfd] text-base font-bold font-['Ubuntu'] leading-snug">{title}</h3>
-                  <button className="mt-2 px-3 py-1 bg-[#003f61] rounded-md">
-                    <span className="text-white text-xs font-normal font-['Manrope']">Ver mais</span>
-                  </button>
+                  <h4 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#001a29", marginBottom: 8 }}>{partner.title}</h4>
+                  <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#001a29", opacity: 0.7, lineHeight: 1.6 }}>{partner.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== NEWSLETTER ===== */}
-        <section className="w-full bg-[#001a29] py-10 px-7">
-          <h2 className="text-[#fdfdfd] text-[34px] font-bold font-['Ubuntu'] leading-tight">
-            Assine nossa Newsletter
+      {/* ===== O QUE FALTA PARA DESTRAVAR ===== */}
+      <section style={{
+        background: "linear-gradient(180deg, #001a29 0%, #003f61 100%)",
+        padding: "80px 0",
+      }}>
+        <div className="container" style={{ maxWidth: 900, margin: "0 auto", padding: "0 24px", textAlign: "center" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 4vw, 52px)",
+            color: "#e6c364",
+            lineHeight: 1.2,
+            marginBottom: 24,
+          }}>
+            O que falta para você destravar?
           </h2>
-          <div className="mt-4 w-full h-24 bg-[#d9d9d9]/20 rounded-[7px] flex items-center px-4 gap-3">
-            <input
-              type="email"
-              placeholder="Seu e-mail"
-              className="flex-1 bg-transparent text-[#fdfdfd] font-['Manrope'] text-base outline-none placeholder-[#e2e3e4]/60"
-            />
-            <button className="px-4 py-2 bg-[#003f61] rounded-lg flex-shrink-0">
-              <span className="text-white text-sm font-['Ubuntu']">Assinar</span>
-            </button>
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: 18,
+            color: "#fdfdfd",
+            lineHeight: 1.7,
+            marginBottom: 40,
+            opacity: 0.9,
+          }}>
+            A reunião é gratuita e sem obrigação de contratação. Em menos de 90 minutos, você terá um diagnóstico claro sobre onde sua operação de marketing pode evoluir.
+          </p>
+          <button className="btn-pill">Agendar reunião com Galpão</button>
+        </div>
+      </section>
+
+      {/* ===== BLOG ===== */}
+      <section id="blog" style={{ background: "#001a29", padding: "80px 0" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(24px, 3vw, 40px)",
+            color: "#fdfdfd",
+            marginBottom: 40,
+          }}>
+            Nossas últimas postagens
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+            {[
+              {
+                title: "A Nova Era dos Criativos: Como Estruturar seus Anúncios em 2026",
+              },
+              {
+                title: "Do Caos à Clareza: Como Transformar Dados em Decisões Estratégicas",
+              },
+              {
+                title: "Server-side Tracking: Como Garantir Qualidade de Dados e Otimizar Resultados.",
+              },
+            ].map((post, i) => (
+              <div key={i} style={{ background: "#001d33", borderRadius: 8, overflow: "hidden", display: "flex", gap: 0 }}>
+                {/* Blue rectangle placeholder as in Figma */}
+                <div style={{ width: 92, minWidth: 92, background: "#45bdfe", alignSelf: "stretch" }} />
+                <div style={{ padding: 20, flex: 1 }}>
+                  <h4 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 15, color: "#fdfdfd", marginBottom: 16, lineHeight: 1.4 }}>
+                    {post.title}
+                  </h4>
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <button style={{
+                      background: "#003f61",
+                      border: "none",
+                      color: "#fdfdfd",
+                      fontFamily: "'Manrope', sans-serif",
+                      fontSize: 12,
+                      fontWeight: 400,
+                      cursor: "pointer",
+                      padding: "4px 12px",
+                      borderRadius: 6,
+                    }}>
+                      Ver mais
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== FOOTER ===== */}
-        <footer className="w-full bg-[#00131d] py-8 px-7 overflow-hidden">
-          <div className="flex items-start justify-between mb-6">
-            <GGLogoFooter />
+      {/* ===== NEWSLETTER ===== */}
+      <section style={{ background: "#001a29", padding: "0 0 80px" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ background: "#001d33", borderRadius: 8, padding: "48px 40px" }}>
+            <h2 style={{
+              fontFamily: "'Ubuntu', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(24px, 3vw, 36px)",
+              color: "#fdfdfd",
+              marginBottom: 32,
+            }}>
+              Assine nossa Newsletter
+            </h2>
+            <div style={{ display: "flex", gap: 12, maxWidth: 500 }}>
+              <input
+                type="email"
+                placeholder="Seu e-mail"
+                style={{
+                  flex: 1,
+                  padding: "12px 20px",
+                  borderRadius: 9999,
+                  border: "1px solid rgba(253,253,253,0.2)",
+                  background: "rgba(255,255,255,0.05)",
+                  color: "#fdfdfd",
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 15,
+                  outline: "none",
+                }}
+              />
+              <button className="btn-pill" style={{ flexShrink: 0 }}>Assinar</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Social Media */}
-            <div className="flex flex-col items-end gap-2">
-              <span className="text-white text-sm font-['Ubuntu']">Nossas Redes Sociais</span>
-              <div className="flex items-center gap-3">
-                <img src="/I1023-5759;531-1778.svg" alt="YouTube" className="w-7 h-[19px]" />
-                <img src="/I1023-5757;531-1785.svg" alt="Instagram" className="w-[19px] h-[19px]" />
-                <img src="/I1023-5758;531-1781.svg" alt="Facebook" className="w-[19px] h-[19px]" />
-                <img src="/I1023-5756;531-1790.svg" alt="WhatsApp" className="w-[18px] h-[18px]" />
+      {/* ===== FOOTER ===== */}
+      <footer style={{ background: "#001a29", borderTop: "1px solid rgba(255,255,255,0.1)", padding: "60px 0 32px" }}>
+        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+
+          {/* Top: Logo + Social */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 48, flexWrap: "wrap", gap: 24 }}>
+            {/* Logo */}
+            <div>
+              <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 48px)", color: "#fdfdfd", letterSpacing: "0.05em", lineHeight: 1.1 }}>
+                GRUPO<br />GALPÃO
+              </div>
+            </div>
+
+            {/* Social */}
+            <div>
+              <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.7, marginBottom: 12 }}>Nossas Redes Sociais</div>
+              <div style={{ display: "flex", gap: 12 }}>
+                {[InstagramIcon, FacebookIcon, LinkedInIcon, WhatsAppIcon].map((Icon, i) => (
+                  <a key={i} href="#" style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    background: "#003f61",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fdfdfd",
+                    textDecoration: "none",
+                    transition: "background 0.2s",
+                  }}>
+                    <Icon />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 mb-6">
+          {/* Links grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, marginBottom: 48 }}>
+            {/* Col 1 */}
             <div>
-              <h4 className="text-white text-base font-normal font-['Ubuntu'] mb-2">Grupo Galpão</h4>
-              <ul className="flex flex-col gap-1">
-                {["Performance+ Ecomm", "Performance+ Leads", "Blog", "Nossos Parceiros", "E-book Ecomm System 2026", "E-book Lead Quality", "Checklist E-Commerce"].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-white text-sm font-normal font-['Manrope'] hover:text-[#45bdfe] transition-colors">{item}</a>
-                  </li>
-                ))}
-              </ul>
+              <h5 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 14, color: "#fdfdfd", marginBottom: 16, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.1em" }}>Grupo Galpão</h5>
+              {["Performance+ Ecomm", "Performance+ Leads", "Blog", "Nossos Parceiros"].map((link) => (
+                <a key={link} href="#" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.7, textDecoration: "none", marginBottom: 8, transition: "opacity 0.2s" }}>{link}</a>
+              ))}
             </div>
 
+            {/* Col 2 */}
             <div>
-              <h4 className="text-white text-base font-normal font-['Ubuntu'] mb-2">Contato</h4>
-              <ul className="flex flex-col gap-1 mb-4">
-                <li><span className="text-white text-sm font-normal font-['Manrope']">(32) 9999-0000</span></li>
-                <li><span className="text-white text-sm font-normal font-['Manrope'] break-all">contato@grupogalpaohub.com.br</span></li>
-              </ul>
-              <h4 className="text-white text-base font-normal font-['Ubuntu'] mb-2">Privacidade</h4>
-              <ul className="flex flex-col gap-1">
-                {["Política de Privacidade", "Termos de Serviços", "Política de Uso"].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-white text-sm font-normal font-['Manrope'] hover:text-[#45bdfe] transition-colors">{item}</a>
-                  </li>
+              <h5 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 14, color: "#fdfdfd", marginBottom: 16, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.1em" }}>Materiais</h5>
+              {["E-book Ecomm System 2026", "E-book Lead Quality", "Checklist E-Commerce"].map((link) => (
+                <a key={link} href="#" style={{ display: "block", fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.7, textDecoration: "none", marginBottom: 8 }}>{link}</a>
+              ))}
+            </div>
+
+            {/* Col 3 */}
+            <div>
+              <h5 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 14, color: "#fdfdfd", marginBottom: 16, opacity: 0.5, textTransform: "uppercase", letterSpacing: "0.1em" }}>Contato</h5>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.7, marginBottom: 8 }}>(32) 9999-0000</p>
+              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#fdfdfd", opacity: 0.7, marginBottom: 16 }}>contato@grupogalpaohub.com.br</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                {["Política de Privacidade", "Termos de Serviços", "Política de Uso"].map((link) => (
+                  <a key={link} href="#" style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#fdfdfd", opacity: 0.5, textDecoration: "none" }}>{link}</a>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-4">
-            <p className="text-white text-xs font-normal font-['Manrope'] text-center">
+          {/* Bottom */}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, textAlign: "center" }}>
+            <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#fdfdfd", opacity: 0.4 }}>
               © 2026 Grupo Galpão. Todos os direitos reservados.
             </p>
           </div>
-        </footer>
+        </div>
+      </footer>
 
-      </div>
+      {/* Responsive styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+          .show-mobile { display: flex !important; }
+        }
+        @media (min-width: 769px) {
+          .show-mobile { display: none !important; }
+          .hidden-mobile { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+          [style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: repeat(3, 1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: repeat(2, 1fr)"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
