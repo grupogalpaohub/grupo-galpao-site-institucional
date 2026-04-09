@@ -125,21 +125,22 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1.5rem;
+    padding: 12px 28px;
     border-radius: 9999px;
-    border: 0.6px solid #e6c364;
-    background: rgba(226, 227, 228, 0.2);
+    border: 1px solid #e6c364;
+    background: rgba(226, 227, 228, 0.15);
     backdrop-filter: blur(2.65px);
     color: #fdfdfd;
     font-family: 'Manrope', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    min-width: 200px;
   }
   .btn-pill:hover {
-    background: rgba(226, 227, 228, 0.35);
+    background: rgba(226, 227, 228, 0.30);
   }
 
   .btn-pill-dark {
@@ -160,6 +161,34 @@
   }
   .btn-pill-dark:hover {
     background: rgba(0, 26, 41, 0.2);
+  }
+
+  /* Hero CTA buttons: column on mobile, row on desktop */
+  .hero-cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  @media (min-width: 768px) {
+    .hero-cta-buttons {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  /* Responsive show/hide */
+  .hidden-mobile {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .hidden-mobile {
+      display: flex;
+    }
+    .show-mobile {
+      display: none !important;
+    }
   }
 
   /* Performance+ blue section rounded top */

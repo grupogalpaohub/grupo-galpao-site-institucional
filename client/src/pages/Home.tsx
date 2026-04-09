@@ -226,32 +226,33 @@ export default function Home() {
               <h1 style={{
                 fontFamily: "'Ubuntu', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(28px, 4.5vw, 56px)",
-                lineHeight: 1.15,
+                fontSize: "clamp(34px, 5vw, 64px)",
+                lineHeight: 1.1,
                 color: "#fdfdfd",
                 margin: "0 0 20px",
-                maxWidth: 600,
+                maxWidth: 640,
               }}>
                 Clareza para decidir. Segurança para crescer.
               </h1>
               <p style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontSize: "clamp(15px, 1.5vw, 19px)",
-                fontWeight: 500,
+                fontSize: "clamp(16px, 1.6vw, 20px)",
+                fontWeight: 400,
                 color: "#fdfdfd",
                 lineHeight: 1.6,
                 margin: "0 0 32px",
-                maxWidth: 520,
+                maxWidth: 540,
+                opacity: 0.92,
               }}>
                 A maioria das empresas tenta anunciar sem estrutura. Nós organizamos dados, criativos, canais e ofertas para crescer de forma sustentável.
               </p>
             </div>
           </div>
 
-          {/* CTA Buttons below the hero card */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 320 }}>
-            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontSize: 16, padding: "10px 24px", justifyContent: "center" }}>Quero agendar uma reunião</button>
-            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontSize: 16, padding: "10px 24px", justifyContent: "center", borderColor: "rgba(255,253,250,0.8)", background: "rgba(0,63,97,0.2)" }}>Quero conhecer o Método</button>
+          {/* CTA Buttons below the hero card — side by side on desktop, stacked on mobile */}
+          <div className="hero-cta-buttons" style={{ width: "100%" }}>
+            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16 }}>Quero agendar uma reunião</button>
+            <button className="btn-pill" style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, borderColor: "rgba(255,253,250,0.8)", background: "rgba(0,63,97,0.15)" }}>Quero conhecer o Método</button>
           </div>
         </div>
       </section>
