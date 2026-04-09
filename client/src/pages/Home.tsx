@@ -52,7 +52,7 @@ const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
           fill="none"
           style={{ position: 'absolute', left: 0, top: 0 }}
         >
-          <path fillRule="evenodd" clipRule="evenodd" d="M2.73303 56C1.09729 55.0235 0 53.2301 0 51.1813C0 50.2173 0.242842 49.3101 0.670381 48.5176L29.0037 2.2839C29.407 1.73386 29.9078 1.26046 30.4806 0.889583C31.3498 0.326707 32.3844 0 33.4944 0C34.6039 0 35.6379 0.32635 36.5069 0.888656C37.0743 1.25589 37.5713 1.72373 37.9727 2.26706L56.8849 33.1275L56.8567 33.1275C56.9047 33.1857 56.9507 33.2456 56.9948 33.3069L57.262 33.7428C57.5074 34.219 57.6462 34.7595 57.6462 35.3324C57.6462 37.244 56.1016 38.796 54.1992 38.796C54.0253 38.796 53.8544 38.783 53.6874 38.7579L53.7176 38.8073L26.7064 38.7363C23.7913 38.5561 21.4792 36.1202 21.4792 33.146C21.4792 33.1088 21.4796 33.0715 21.4803 33.0344L50.2261 33.11L33.4934 5.80593L2.73303 56Z" fill="#003F61"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.73303 56C1.09729 55.0235 0 53.2301 0 51.1813C0 50.2173 0.242842 49.3101 0.670381 48.5176L29.0037 2.2839C29.407 1.73386 29.9078 1.26046 30.4806 0.889583C31.3498 0.326707 32.3844 0 33.4944 0C34.6039 0 35.6379 0.32635 36.5069 0.888656C37.0743 1.25589 37.5713 1.72373 37.9727 2.26706L56.8849 33.1275L56.8567 33.1275C56.9047 33.1857 56.9507 33.2456 56.9948 33.3069L57.262 33.7428C57.5074 34.219 57.6462 34.7595 57.6462 35.3324C57.6462 37.244 56.1016 38.796 54.1992 38.796C54.0253 38.796 53.8544 38.783 53.6874 38.7579L53.7176 38.8073L26.7064 38.7363C23.7913 38.5561 21.4792 36.1202 21.4792 33.146C21.4792 33.1088 21.4796 33.0715 21.4803 33.0344L50.2261 33.11L33.4934 5.80593L2.73303 56Z" fill="#fdfdfd"/>
         </svg>
         {/* Plus mark (485-330) */}
         <svg
@@ -62,10 +62,10 @@ const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
           fill="none"
           style={{ position: 'absolute', left: 48.66 * scale, top: 9.88 * scale }}
         >
-          <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill="#003F61"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill="#fdfdfd"/>
         </svg>
       </div>
-      {/* Text: "Performance+" — BRANCO conforme Figma */}
+      {/* Text: "Performance+" — BRANCO conforme Figma (sobre fundo azul claro) */}
       <span style={{
         fontFamily: "'Ubuntu', sans-serif",
         fontWeight: 700,
@@ -420,105 +420,50 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Mobile: carrossel de 3 stats com setas — fundo rgba(0,63,97,0.78) conforme Rectangle135 */}
+        {/* Mobile: 3 stats em scroll horizontal — fundo branco transparente conforme Figma */}
         <div className="stats-mobile" style={{ padding: "0 0 48px" }}>
-          {/* Card com fundo semi-transparente */}
           <div style={{
-            background: "rgba(0,63,97,0.78)",
-            margin: "0 24px",
-            borderRadius: 12,
-            padding: "24px 20px",
-            position: "relative",
+            display: "flex",
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            padding: "0 24px",
+            gap: 0,
           }}>
-            {/* Seta esquerda */}
-            <button
-              onClick={() => setActiveStat((activeStat - 1 + stats.length) % stats.length)}
-              style={{
-                position: "absolute",
-                left: 12,
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.15)",
-                border: "none",
-                borderRadius: "50%",
-                width: 32,
-                height: 32,
+            {stats.map((stat, i) => (
+              <div key={i} style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                color: "#fdfdfd",
-                fontSize: 16,
-                padding: 0,
-              }}
-              aria-label="Anterior"
-            >
-              ‹
-            </button>
-
-            {/* Conteúdo do stat */}
-            <div style={{ textAlign: "center", padding: "0 40px" }}>
-              <div style={{
-                fontFamily: "'Ubuntu', sans-serif",
-                fontWeight: 700,
-                fontSize: 40,
-                color: "#fdfdfd",
-                lineHeight: 1,
-                marginBottom: 8,
-              }}>{stats[activeStat].value}</div>
-              <div style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: 15,
-                color: "rgba(255,255,255,0.85)",
-                lineHeight: 1.45,
-              }}>{stats[activeStat].label}</div>
-            </div>
-
-            {/* Seta direita */}
-            <button
-              onClick={() => setActiveStat((activeStat + 1) % stats.length)}
-              style={{
-                position: "absolute",
-                right: 12,
-                top: "50%",
-                transform: "translateY(-50%)",
+                gap: 12,
+                flexShrink: 0,
+                scrollSnapAlign: "start",
                 background: "rgba(255,255,255,0.15)",
-                border: "none",
-                borderRadius: "50%",
-                width: 32,
-                height: 32,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                color: "#fdfdfd",
-                fontSize: 16,
-                padding: 0,
-              }}
-              aria-label="Próximo"
-            >
-              ›
-            </button>
-          </div>
-
-          {/* Dots indicadores */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 12 }}>
-            {stats.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveStat(i)}
-                style={{
-                  width: i === activeStat ? 20 : 8,
-                  height: 8,
-                  borderRadius: 4,
-                  background: i === activeStat ? "#fdfdfd" : "rgba(255,255,255,0.35)",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "all 0.2s",
-                }}
-                aria-label={`Stat ${i + 1}`}
-              />
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                borderRadius: 12,
+                padding: "16px 20px",
+                marginRight: i < stats.length - 1 ? 12 : 0,
+                minWidth: 220,
+              }}>
+                <span style={{
+                  fontFamily: "'Ubuntu', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 36,
+                  color: "#fdfdfd",
+                  lineHeight: 1,
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                }}>{stat.value}</span>
+                <span style={{
+                  fontFamily: "'Manrope', sans-serif",
+                  fontSize: 13,
+                  color: "rgba(255,255,255,0.9)",
+                  lineHeight: 1.4,
+                  marginLeft: 10,
+                }}>{stat.label}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -528,7 +473,7 @@ export default function Home() {
       {/* ===== PERFORMANCE+ SECTION (blue bg) ===== */}
       {/* Figma: #45BDFE, rounded top 60px, with large ellipse decorative element */}
       <section id="metodologia" style={{ background: "#45BDFE", borderRadius: "60px 60px 0 0", padding: "60px 0 80px", position: "relative", overflow: "hidden" }}>
-        {/* Decorative ellipse — Figma: Ellipse 36/37, #45BDFE rounded-full, large, positioned at top */}
+        {/* Decorative ellipse — Figma: Ellipse 36/37 */}
         <div style={{
           position: "absolute",
           width: "596px",
@@ -540,6 +485,19 @@ export default function Home() {
           transform: "translateX(-50%)",
           pointerEvents: "none",
         }} />
+        {/* GG Logo decorativo ao fundo — grande, baixa opacidade, posicionado à direita */}
+        <div style={{
+          position: "absolute",
+          right: "-40px",
+          bottom: "-20px",
+          opacity: 0.08,
+          pointerEvents: "none",
+          transform: "scale(1)",
+        }}>
+          <svg width="320" height="360" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.2933 32.7225L17.5887 26.7799L21.0523 21.206H28.1664L21.2933 32.7225ZM16.4151 24.8973L14.1081 21.1966H18.7147L16.4151 24.8973ZM11.542 32.7393L2.09072 17.3383C1.95106 17.1104 1.9556 16.8191 2.10239 16.5958L11.5437 2.23347L15.1368 7.62626L10.064 15.5888C9.51218 16.4553 9.50662 17.5781 10.0499 18.4496L10.5256 19.2129H7.12346C6.68943 19.2129 6.42153 19.7523 6.64504 20.176L7.0209 20.8884C7.12181 21.0796 7.30336 21.1966 7.49924 21.1966H11.7624L15.2442 26.7815L11.542 32.7393ZM20.9305 2.23645L28.0334 12.6263H20.925C20.884 12.6263 20.8462 12.6061 20.8234 12.5719L17.5121 7.60207L20.9305 2.23645ZM30.4535 19.9073C30.2113 19.4806 29.7559 19.2155 29.2651 19.2155H27.492V19.2129H12.8714L11.739 17.3966C11.5989 17.1718 11.6003 16.882 11.7429 16.6585L16.3432 9.43721L19.1666 13.6752C19.5592 14.2646 20.2165 14.6167 20.925 14.6167H29.2155C29.7241 14.6167 30.1872 14.3373 30.4244 13.8876C30.6615 13.4378 30.6306 12.8979 30.3437 12.4788L22.3177 0.738959C21.9963 0.268527 21.4605 -0.00845514 20.8944 0.0022703C20.3246 0.0115083 19.8015 0.303757 19.4953 0.784366L16.3058 5.79111L12.9496 0.753521C12.6339 0.279957 12.0958 0.00344467 11.5369 0C10.9679 0.00180062 10.4415 0.286534 10.1289 0.762054L0.439004 15.5024C-0.1296 16.3676 -0.147292 17.4968 0.394303 18.3792L10.0989 34.1935C10.4083 34.697 10.9452 34.9984 11.5359 35H11.5405C12.1293 35 12.666 34.7018 12.9767 34.2015L16.4178 28.6641L19.8636 34.1918C20.1751 34.6913 20.7104 34.9883 21.2982 34.9883C21.3038 34.9883 21.3094 34.9883 21.3149 34.988C21.9093 34.9825 22.446 34.6744 22.751 34.1639L30.4387 21.2826C30.6901 20.861 30.696 20.3342 30.4535 19.9073Z" fill="#003F61"/>
+          </svg>
+        </div>
         <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
           {/* Logo Performance+ — exact Figma SVGs: triangle + plus, both #003F61 */}
@@ -547,76 +505,76 @@ export default function Home() {
             <PerfPlusLogo height={56} />
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
-            {/* Left: Description — Performance+ pillars intro (Figma: inside blue section) */}
-            <div>
-              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#003F61", lineHeight: 1.6, marginBottom: 24, fontWeight: 500 }}>
-                O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
-              </p>
-              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#003F61", lineHeight: 1.7, marginBottom: 32 }}>
-                Entregamos estrutura e mensuração real da sua empresa, evidenciando os impactos do marketing na sua margem de lucro, onde investir e quais os próximos passos a seguir.
-              </p>
-              <button className="btn-pill" style={{ borderColor: "#001a29", color: "#001a29", background: "rgba(0,26,41,0.1)" }}>
-                Quero saber mais detalhes
-              </button>
-            </div>
+          {/* Intro paragraph — shown on mobile above timeline */}
+          <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#003F61", lineHeight: 1.65, marginBottom: 32, fontWeight: 500, textAlign: "center" }}>
+            O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
+          </p>
 
-            {/* Right: 5 pillars timeline */}
-            <div style={{ position: "relative" }}>
-              {/* Vertical line */}
-              <div style={{
-                position: "absolute",
-                left: "50%",
-                top: 0,
-                bottom: 0,
-                width: 2,
-                background: "rgba(255,255,255,0.3)",
-                transform: "translateX(-50%)",
-              }} />
+          {/* 5 pillars — vertical timeline, mobile-first */}
+          <div style={{ position: "relative", maxWidth: 480, margin: "0 auto 32px" }}>
+            {/* Vertical line */}
+            <div style={{
+              position: "absolute",
+              left: "50%",
+              top: 0,
+              bottom: 0,
+              width: 2,
+              background: "rgba(0,63,97,0.25)",
+              transform: "translateX(-50%)",
+            }} />
 
-              {[
-                { num: "1", title: "Infraestrutura de Dados", desc: "Nossa base, sem mensuração de dados real, não há espaço para otimização.", side: "left" },
-                { num: "2", title: "Estruturação de Criativos", desc: "Tenha certeza que seu anúncio está conversando com seu público.", side: "right" },
-                { num: "3", title: "Otimização de Canais e CRO", desc: "Análise técnica de funil, e otimizações nas taxas de conversão.", side: "left" },
-                { num: "4", title: "Retenção e Recorrência", desc: "Mais lucro a partir da base de clientes existente.", side: "right" },
-                { num: "5", title: "Metas S.M.A.R.T.", desc: "Transformar dados em Metas ambiciosas e realistas.", side: "left" },
-              ].map((pillar, i) => (
-                <div key={i} style={{
+            {[
+              { num: "1", title: "Infraestrutura de Dados", desc: "Nossa base, sem mensuração de dados real, não há espaço para otimização.", side: "left" },
+              { num: "2", title: "Estruturação de Criativos", desc: "Tenha certeza que seu anúncio está conversando com seu público.", side: "right" },
+              { num: "3", title: "Otimização de Canais e CRO", desc: "Análise técnica de funil, e otimizações nas taxas de conversão.", side: "left" },
+              { num: "4", title: "Retenção e Recorrência", desc: "Mais lucro a partir da base de clientes existente.", side: "right" },
+              { num: "5", title: "Metas S.M.A.R.T.", desc: "Transformar dados em Metas ambiciosas e realistas.", side: "left" },
+            ].map((pillar, i) => (
+              <div key={i} style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0,
+                marginBottom: i < 4 ? 28 : 0,
+                flexDirection: pillar.side === "left" ? "row" : "row-reverse",
+              }}>
+                {/* Text */}
+                <div style={{ flex: 1, textAlign: pillar.side === "left" ? "right" : "left", padding: pillar.side === "left" ? "0 16px 0 0" : "0 0 0 16px" }}>
+                  <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 15, color: "#003F61", marginBottom: 3 }}>{pillar.title}</div>
+                  <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 12, color: "#003F61", opacity: 0.85, lineHeight: 1.5 }}>{pillar.desc}</div>
+                </div>
+                {/* Number circle */}
+                <div style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "#e6c364",
                   display: "flex",
                   alignItems: "center",
-                  gap: 0,
-                  marginBottom: i < 4 ? 32 : 0,
-                  flexDirection: pillar.side === "left" ? "row" : "row-reverse",
+                  justifyContent: "center",
+                  fontFamily: "'Ubuntu', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 16,
+                  color: "#001a29",
+                  flexShrink: 0,
+                  zIndex: 1,
+                  position: "relative",
                 }}>
-                  {/* Text */}
-                  <div style={{ flex: 1, textAlign: pillar.side === "left" ? "right" : "left", padding: pillar.side === "left" ? "0 20px 0 0" : "0 0 0 20px" }}>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 16, color: "#003F61", marginBottom: 4 }}>{pillar.title}</div>
-                    <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 13, color: "#003F61", opacity: 0.85, lineHeight: 1.5 }}>{pillar.desc}</div>
-                  </div>
-                  {/* Number circle */}
-                  <div style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    background: "#e6c364",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontFamily: "'Ubuntu', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 18,
-                    color: "#001a29",
-                    flexShrink: 0,
-                    zIndex: 1,
-                    position: "relative",
-                  }}>
-                    {pillar.num}
-                  </div>
-                  {/* Empty space */}
-                  <div style={{ flex: 1 }} />
+                  {pillar.num}
                 </div>
-              ))}
-            </div>
+                {/* Empty space */}
+                <div style={{ flex: 1 }} />
+              </div>
+            ))}
+          </div>
+
+          {/* Second paragraph + CTA */}
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 15, color: "#003F61", lineHeight: 1.65, marginBottom: 28, maxWidth: 480, margin: "0 auto 28px" }}>
+              Entregamos estrutura e mensuração real da sua empresa, evidenciando os impactos do marketing na sua margem de lucro, onde investir e quais os próximos passos a seguir.
+            </p>
+            <button className="btn-pill" style={{ borderColor: "#001a29", color: "#001a29", background: "rgba(0,26,41,0.1)" }}>
+              Quero saber mais detalhes
+            </button>
           </div>
         </div>
       </section>
