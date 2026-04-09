@@ -258,12 +258,15 @@ export default function Home() {
       </section>
 
       {/* ===== CLIENTS SECTION ===== */}
-      <section style={{ background: "#001a29", paddingBottom: 60 }}>
+      {/* Figma order: título → carousel → H2 Metodologia → parágrafo → +R$2mi banner */}
+      <section style={{ background: "#001a29", padding: "60px 0" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+
+          {/* Title */}
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(24px, 3vw, 36px)",
+            fontSize: "clamp(22px, 3vw, 34px)",
             color: "#fdfdfd",
             textAlign: "center",
             marginBottom: 40,
@@ -271,8 +274,11 @@ export default function Home() {
             Quem já cresceu com o Grupo Galpão
           </h2>
 
-          {/* Infinite scrolling logo carousel */}
-          <div style={{ overflow: "hidden", marginBottom: 48, position: "relative" }}>
+          {/* ===== LOGO CAROUSEL ===== */}
+          {/* Strategy: each logo item has fixed width 200px, track = 6 items × 200px = 1200px
+              Duplicate set: 12 items × 200px = 2400px total
+              Animation: translateX(-1200px) = exactly -50% → seamless loop */}
+          <div style={{ overflow: "hidden", marginBottom: 56, position: "relative" }}>
             {/* Fade edges */}
             <div style={{
               position: "absolute", left: 0, top: 0, bottom: 0, width: 80,
@@ -285,10 +291,10 @@ export default function Home() {
               zIndex: 2, pointerEvents: "none"
             }} />
             <div className="logo-carousel-track">
-              {/* First set */}
+              {/* === SET 1 === */}
+              {/* OFFRio */}
               <div className="logo-carousel-item">
-                {/* OFFRio logo - composed from SVG parts */}
-                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
+                <div style={{ position: "relative", width: 114, height: 28 }}>
                   <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
                   <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
                   <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
@@ -298,15 +304,18 @@ export default function Home() {
                   <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
                 </div>
               </div>
+              {/* Vitacon */}
               <div className="logo-carousel-item">
-                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
               </div>
+              {/* Re.crie */}
               <div className="logo-carousel-item">
-                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
               </div>
-              {/* Duplicate for seamless loop */}
+              {/* === SET 2 (duplicate for seamless loop) === */}
+              {/* OFFRio */}
               <div className="logo-carousel-item">
-                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
+                <div style={{ position: "relative", width: 114, height: 28 }}>
                   <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
                   <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
                   <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
@@ -316,40 +325,59 @@ export default function Home() {
                   <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
                 </div>
               </div>
+              {/* Vitacon */}
               <div className="logo-carousel-item">
-                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
               </div>
+              {/* Re.crie */}
               <div className="logo-carousel-item">
-                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
-              {/* Third set for extra smoothness */}
-              <div className="logo-carousel-item">
-                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
-                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
-                </div>
-              </div>
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
               </div>
             </div>
           </div>
 
-          {/* Stat */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 16 }}>
+          {/* H2 Metodologia (Figma: top 638px — dentro da seção escura) */}
+          <h2 style={{
+            fontFamily: "'Ubuntu', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(24px, 3.5vw, 40px)",
+            color: "#fdfdfd",
+            lineHeight: 1.2,
+            marginBottom: 20,
+            maxWidth: 700,
+          }}>
+            Metodologia construída na prática. Decisões baseadas em dados.
+          </h2>
+
+          {/* Paragraph (Figma: top 802px) */}
+          <p style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: "clamp(16px, 1.5vw, 19px)",
+            fontWeight: 500,
+            color: "#e2e3e4",
+            lineHeight: 1.6,
+            marginBottom: 40,
+            maxWidth: 680,
+          }}>
+            Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
+          </p>
+
+          {/* +R$2mi stat banner (Figma: top 816px) */}
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 20,
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 8,
+            padding: "20px 32px",
+          }}>
             <span style={{
               fontFamily: "'Ubuntu', sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(36px, 5vw, 56px)",
+              fontSize: "clamp(32px, 4vw, 48px)",
               color: "#fdfdfd",
+              lineHeight: 1,
             }}>+R$2mi</span>
             <span style={{
               fontFamily: "'Manrope', sans-serif",
@@ -359,6 +387,7 @@ export default function Home() {
               lineHeight: 1.4,
             }}>Investidos em anúncios<br />no Meta Ads</span>
           </div>
+
         </div>
       </section>
 
@@ -384,22 +413,9 @@ export default function Home() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
-            {/* Left: Description */}
+            {/* Left: Description — Performance+ pillars intro (Figma: inside blue section) */}
             <div>
-              <h2 style={{
-                fontFamily: "'Ubuntu', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(28px, 3.5vw, 44px)",
-                color: "#fdfdfd",
-                lineHeight: 1.2,
-                marginBottom: 24,
-              }}>
-                Metodologia construída na prática. Decisões baseadas em dados.
-              </h2>
               <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", lineHeight: 1.6, marginBottom: 24 }}>
-                Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
-              </p>
-              <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", lineHeight: 1.6, marginBottom: 32 }}>
                 O Performance+ estrutura cada etapa do seu negócio. São cinco pilares que conecta dados, criativos, canais, estratégias e metas em uma única direção: o seu sucesso.
               </p>
               <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", lineHeight: 1.7, marginBottom: 32, fontStyle: "italic" }}>

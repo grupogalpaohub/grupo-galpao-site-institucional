@@ -82,18 +82,26 @@
   }
 }
 
+/* Logo Carousel — infinite marquee
+   Technique: 2 identical sets of logos side by side.
+   Each item has a fixed width of 200px.
+   3 logos × 200px = 600px per set.
+   Total track = 2 sets = 1200px.
+   Animation translates -50% = -600px, then resets seamlessly.
+*/
 @keyframes logo-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .logo-carousel-track {
   display: flex;
   align-items: center;
-  gap: 80px;
+  /* No gap — spacing handled by fixed item width */
   width: max-content;
   animation: logo-scroll 12s linear infinite;
-  padding: 20px 0;
+  padding: 16px 0;
+  will-change: transform;
 }
 
 .logo-carousel-track:hover {
@@ -105,7 +113,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  min-width: 100px;
+  width: 200px;   /* fixed width — critical for -50% math */
+  height: 60px;
 }
 
 @layer components {
