@@ -82,6 +82,32 @@
   }
 }
 
+@keyframes logo-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.logo-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  width: max-content;
+  animation: logo-scroll 12s linear infinite;
+  padding: 20px 0;
+}
+
+.logo-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.logo-carousel-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
 @layer components {
   .container {
     width: 100%;

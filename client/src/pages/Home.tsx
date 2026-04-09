@@ -259,7 +259,7 @@ export default function Home() {
 
       {/* ===== CLIENTS SECTION ===== */}
       <section style={{ background: "#001a29", paddingBottom: 60 }}>
-        <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
             fontWeight: 700,
@@ -271,18 +271,76 @@ export default function Home() {
             Quem já cresceu com o Grupo Galpão
           </h2>
 
-          {/* Logos */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 60, flexWrap: "wrap", marginBottom: 48 }}>
-            {/* OffRio */}
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 28, color: "#fdfdfd", letterSpacing: "-0.02em" }}>
-                <span style={{ color: "#fdfdfd" }}>OFF</span><span style={{ color: "#fdfdfd" }}>Rio</span>
-              </span>
+          {/* Infinite scrolling logo carousel */}
+          <div style={{ overflow: "hidden", marginBottom: 48, position: "relative" }}>
+            {/* Fade edges */}
+            <div style={{
+              position: "absolute", left: 0, top: 0, bottom: 0, width: 80,
+              background: "linear-gradient(to right, #001a29, transparent)",
+              zIndex: 2, pointerEvents: "none"
+            }} />
+            <div style={{
+              position: "absolute", right: 0, top: 0, bottom: 0, width: 80,
+              background: "linear-gradient(to left, #001a29, transparent)",
+              zIndex: 2, pointerEvents: "none"
+            }} />
+            <div className="logo-carousel-track">
+              {/* First set */}
+              <div className="logo-carousel-item">
+                {/* OFFRio logo - composed from SVG parts */}
+                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
+                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
+                </div>
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
+              {/* Duplicate for seamless loop */}
+              <div className="logo-carousel-item">
+                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
+                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
+                </div>
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
+              {/* Third set for extra smoothness */}
+              <div className="logo-carousel-item">
+                <div style={{ position: "relative", width: 114, height: 28, flexShrink: 0 }}>
+                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
+                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
+                </div>
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
+              <div className="logo-carousel-item">
+                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 44, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+              </div>
             </div>
-            {/* Vitacon */}
-            <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 30, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-            {/* Recrie */}
-            <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 50, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
           </div>
 
           {/* Stat */}
