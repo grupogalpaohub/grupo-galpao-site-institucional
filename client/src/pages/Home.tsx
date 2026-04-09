@@ -65,12 +65,12 @@ const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
           <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill="#003F61"/>
         </svg>
       </div>
-      {/* Text: "Performance+" */}
+      {/* Text: "Performance+" — BRANCO conforme Figma */}
       <span style={{
         fontFamily: "'Ubuntu', sans-serif",
         fontWeight: 700,
         fontSize: height * 0.6,
-        color: '#003F61',
+        color: '#fdfdfd',
         letterSpacing: '-0.01em',
         lineHeight: 1,
       }}>Performance+</span>
@@ -385,57 +385,141 @@ export default function Home() {
 
         {/* ===== STATS — Desktop: 3 colunas fundo branco | Mobile: apenas +R$2mi em linha ===== */}
 
-        {/* Desktop: 3 stats em linha com fundo cinza claro */}
+        {/* Desktop: 3 stats em linha — fundo rgba(0,63,97,0.78) conforme Rectangle135 do Figma */}
         <div className="stats-desktop" style={{
-          background: "#f0f2f4",
           justifyContent: "center",
           alignItems: "stretch",
+          background: "rgba(0,63,97,0.78)",
+          margin: "0 24px",
+          borderRadius: 12,
         }}>
           {stats.map((stat, i) => (
             <div key={i} style={{
               display: "flex",
               alignItems: "center",
               gap: 20,
-              padding: "32px 56px",
-              borderRight: i < stats.length - 1 ? "1px solid #d0d5dd" : "none",
+              padding: "32px 48px",
+              borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.2)" : "none",
               flex: 1,
-              maxWidth: 400,
             }}>
               <span style={{
                 fontFamily: "'Ubuntu', sans-serif",
                 fontWeight: 700,
                 fontSize: "clamp(32px, 3vw, 44px)",
-                color: "#001a29",
+                color: "#fdfdfd",
                 lineHeight: 1,
                 whiteSpace: "nowrap",
               }}>{stat.value}</span>
               <span style={{
                 fontFamily: "'Manrope', sans-serif",
                 fontSize: 15,
-                color: "#4a5568",
+                color: "rgba(255,255,255,0.85)",
                 lineHeight: 1.45,
               }}>{stat.label}</span>
             </div>
           ))}
         </div>
 
-        {/* Mobile: apenas +R$2mi em linha (sem card, sem seta) — exatamente como no Figma */}
-        <div className="stats-mobile" style={{ padding: "0 28px 48px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <span style={{
-              fontFamily: "'Ubuntu', sans-serif",
-              fontWeight: 700,
-              fontSize: 40,
-              color: "#fdfdfd",
-              lineHeight: 1,
-              whiteSpace: "nowrap",
-            }}>+R$2mi</span>
-            <span style={{
-              fontFamily: "'Manrope', sans-serif",
-              fontSize: 16,
-              color: "#e2e3e4",
-              lineHeight: 1.45,
-            }}>Investidos em anúncios no Meta Ads</span>
+        {/* Mobile: carrossel de 3 stats com setas — fundo rgba(0,63,97,0.78) conforme Rectangle135 */}
+        <div className="stats-mobile" style={{ padding: "0 0 48px" }}>
+          {/* Card com fundo semi-transparente */}
+          <div style={{
+            background: "rgba(0,63,97,0.78)",
+            margin: "0 24px",
+            borderRadius: 12,
+            padding: "24px 20px",
+            position: "relative",
+          }}>
+            {/* Seta esquerda */}
+            <button
+              onClick={() => setActiveStat((activeStat - 1 + stats.length) % stats.length)}
+              style={{
+                position: "absolute",
+                left: 12,
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "rgba(255,255,255,0.15)",
+                border: "none",
+                borderRadius: "50%",
+                width: 32,
+                height: 32,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                color: "#fdfdfd",
+                fontSize: 16,
+                padding: 0,
+              }}
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+
+            {/* Conteúdo do stat */}
+            <div style={{ textAlign: "center", padding: "0 40px" }}>
+              <div style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: 40,
+                color: "#fdfdfd",
+                lineHeight: 1,
+                marginBottom: 8,
+              }}>{stats[activeStat].value}</div>
+              <div style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 15,
+                color: "rgba(255,255,255,0.85)",
+                lineHeight: 1.45,
+              }}>{stats[activeStat].label}</div>
+            </div>
+
+            {/* Seta direita */}
+            <button
+              onClick={() => setActiveStat((activeStat + 1) % stats.length)}
+              style={{
+                position: "absolute",
+                right: 12,
+                top: "50%",
+                transform: "translateY(-50%)",
+                background: "rgba(255,255,255,0.15)",
+                border: "none",
+                borderRadius: "50%",
+                width: 32,
+                height: 32,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                color: "#fdfdfd",
+                fontSize: 16,
+                padding: 0,
+              }}
+              aria-label="Próximo"
+            >
+              ›
+            </button>
+          </div>
+
+          {/* Dots indicadores */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 12 }}>
+            {stats.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveStat(i)}
+                style={{
+                  width: i === activeStat ? 20 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  background: i === activeStat ? "#fdfdfd" : "rgba(255,255,255,0.35)",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                  transition: "all 0.2s",
+                }}
+                aria-label={`Stat ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
 
