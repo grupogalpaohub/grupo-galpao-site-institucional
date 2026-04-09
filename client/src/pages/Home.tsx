@@ -336,56 +336,127 @@ export default function Home() {
             </div>
           </div>
 
-          {/* H2 Metodologia (Figma: top 638px — dentro da seção escura) */}
+          {/* H2 Metodologia — fonte corrigida, centralizado na web */}
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(24px, 3.5vw, 40px)",
+            fontSize: "clamp(22px, 2.2vw, 30px)",
             color: "#fdfdfd",
-            lineHeight: 1.2,
-            marginBottom: 20,
-            maxWidth: 700,
+            lineHeight: 1.25,
+            marginBottom: 16,
+            textAlign: "center",
           }}>
             Metodologia construída na prática. Decisões baseadas em dados.
           </h2>
 
-          {/* Paragraph (Figma: top 802px) */}
+          {/* Paragraph — fonte corrigida, centralizado na web */}
           <p style={{
             fontFamily: "'Manrope', sans-serif",
-            fontSize: "clamp(16px, 1.5vw, 19px)",
-            fontWeight: 500,
-            color: "#e2e3e4",
+            fontSize: "clamp(14px, 1vw, 16px)",
+            fontWeight: 400,
+            color: "#c8cdd3",
             lineHeight: 1.6,
             marginBottom: 40,
-            maxWidth: 680,
+            textAlign: "center",
+            maxWidth: 600,
+            margin: "0 auto 40px",
           }}>
             Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
           </p>
 
-          {/* +R$2mi stat banner (Figma: top 816px) */}
+          {/* Stats row: +R$2mi | +75 | +7,5x — conforme referência do Figma */}
           <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 20,
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 8,
-            padding: "20px 32px",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 16,
           }}>
-            <span style={{
-              fontFamily: "'Ubuntu', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(32px, 4vw, 48px)",
-              color: "#fdfdfd",
-              lineHeight: 1,
-            }}>+R$2mi</span>
-            <span style={{
-              fontFamily: "'Manrope', sans-serif",
-              fontSize: 16,
-              color: "#fdfdfd",
-              opacity: 0.85,
-              lineHeight: 1.4,
-            }}>Investidos em anúncios<br />no Meta Ads</span>
+            {/* Stat 1: +R$2mi */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 8,
+              padding: "18px 28px",
+              flex: "1 1 200px",
+              minWidth: 180,
+              maxWidth: 280,
+            }}>
+              <span style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(26px, 2.5vw, 36px)",
+                color: "#fdfdfd",
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}>+R$2mi</span>
+              <span style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 13,
+                color: "#c8cdd3",
+                lineHeight: 1.4,
+              }}>Investidos em anúncios<br />no Meta Ads</span>
+            </div>
+
+            {/* Stat 2: +75 */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 8,
+              padding: "18px 28px",
+              flex: "1 1 200px",
+              minWidth: 180,
+              maxWidth: 280,
+            }}>
+              <span style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(26px, 2.5vw, 36px)",
+                color: "#fdfdfd",
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}>+75</span>
+              <span style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 13,
+                color: "#c8cdd3",
+                lineHeight: 1.4,
+              }}>Contas de anúncios<br />gerenciadas</span>
+            </div>
+
+            {/* Stat 3: +7,5x */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 8,
+              padding: "18px 28px",
+              flex: "1 1 200px",
+              minWidth: 180,
+              maxWidth: 280,
+            }}>
+              <span style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(26px, 2.5vw, 36px)",
+                color: "#fdfdfd",
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}>+7,5x</span>
+              <span style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 13,
+                color: "#c8cdd3",
+                lineHeight: 1.4,
+              }}>ROAS médio de nossos<br />clientes.</span>
+            </div>
           </div>
 
         </div>
