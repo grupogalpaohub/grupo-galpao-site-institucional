@@ -117,6 +117,23 @@
   height: 60px;
 }
 
+/* Stats responsive visibility */
+.stats-desktop {
+  display: flex;
+}
+.stats-mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .stats-desktop {
+    display: none;
+  }
+  .stats-mobile {
+    display: block;
+  }
+}
+
 @layer components {
   .container {
     width: 100%;

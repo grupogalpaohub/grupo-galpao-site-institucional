@@ -15,7 +15,7 @@
  *   - Body: Manrope Regular/Medium (400/500)
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // CDN URLs for images
 const IMAGES = {
@@ -90,6 +90,13 @@ const WhatsAppIcon = () => (
 export default function Home() {
   const [activeCase, setActiveCase] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeStat, setActiveStat] = useState(0);
+
+  const stats = [
+    { value: "+R$2mi", label: "Investidos em an\u00fancios no Meta Ads" },
+    { value: "+75", label: "Contas de an\u00fancios gerenciadas" },
+    { value: "+7,5x", label: "ROAS m\u00e9dio de nossos clientes." },
+  ];
 
   const cases = [
     {
@@ -258,28 +265,24 @@ export default function Home() {
       </section>
 
       {/* ===== CLIENTS SECTION ===== */}
-      {/* Figma order: título → carousel → H2 Metodologia → parágrafo → +R$2mi banner */}
-      <section style={{ background: "#001a29", padding: "60px 0" }}>
+      <section style={{ background: "#001a29", padding: "56px 0 0" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
-          {/* Title */}
+          {/* Title — large bold, centered */}
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(22px, 3vw, 34px)",
+            fontSize: "clamp(28px, 3.5vw, 42px)",
             color: "#fdfdfd",
             textAlign: "center",
             marginBottom: 40,
+            lineHeight: 1.2,
           }}>
             Quem já cresceu com o Grupo Galpão
           </h2>
 
           {/* ===== LOGO CAROUSEL ===== */}
-          {/* Strategy: each logo item has fixed width 200px, track = 6 items × 200px = 1200px
-              Duplicate set: 12 items × 200px = 2400px total
-              Animation: translateX(-1200px) = exactly -50% → seamless loop */}
           <div style={{ overflow: "hidden", marginBottom: 56, position: "relative" }}>
-            {/* Fade edges */}
             <div style={{
               position: "absolute", left: 0, top: 0, bottom: 0, width: 80,
               background: "linear-gradient(to right, #001a29, transparent)",
@@ -291,175 +294,196 @@ export default function Home() {
               zIndex: 2, pointerEvents: "none"
             }} />
             <div className="logo-carousel-track">
-              {/* === SET 1 === */}
-              {/* OFFRio */}
-              <div className="logo-carousel-item">
-                <div style={{ position: "relative", width: 114, height: 28 }}>
-                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
-                </div>
-              </div>
-              {/* Vitacon */}
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
-              {/* Re.crie */}
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
-              {/* === SET 2 (duplicate for seamless loop) === */}
-              {/* OFFRio */}
-              <div className="logo-carousel-item">
-                <div style={{ position: "relative", width: 114, height: 28 }}>
-                  <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
-                  <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
-                </div>
-              </div>
-              {/* Vitacon */}
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
-              {/* Re.crie */}
-              <div className="logo-carousel-item">
-                <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
-              </div>
+              {[0, 1].map((set) => (
+                <>
+                  {/* OFFRio */}
+                  <div key={`offrio-${set}`} className="logo-carousel-item">
+                    <div style={{ position: "relative", width: 114, height: 28 }}>
+                      <img src="/I1013-2953;574-2812.svg" alt="" style={{ position: "absolute", left: 0, top: 0.85, width: 23.64, height: 26.71, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2816.svg" alt="" style={{ position: "absolute", left: 27, top: 1.24, width: 14.21, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2817.svg" alt="" style={{ position: "absolute", left: 43.53, top: 1.24, width: 14.2, height: 25.9, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2813.svg" alt="" style={{ position: "absolute", left: 60.63, top: 1.07, width: 22.09, height: 25.74, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2815.svg" alt="" style={{ position: "absolute", left: 85.37, top: 8.63, width: 5.88, height: 18.18, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2818.svg" alt="" style={{ position: "absolute", left: 84.79, top: 0, width: 7.03, height: 6.28, filter: "brightness(0) invert(1)" }} />
+                      <img src="/I1013-2953;574-2814.svg" alt="" style={{ position: "absolute", left: 94.19, top: 8.21, width: 19.79, height: 19.03, filter: "brightness(0) invert(1)" }} />
+                    </div>
+                  </div>
+                  {/* Vitacon */}
+                  <div key={`vitacon-${set}`} className="logo-carousel-item">
+                    <img src={IMAGES.logoVitacon} alt="Vitacon" style={{ height: 28, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                  </div>
+                  {/* Re.crie */}
+                  <div key={`recrie-${set}`} className="logo-carousel-item">
+                    <img src={IMAGES.logoRecrie} alt="Re.crie" style={{ height: 40, maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
+                  </div>
+                </>
+              ))}
             </div>
           </div>
 
-          {/* H2 Metodologia — fonte corrigida, centralizado na web */}
+          {/* H2 Metodologia — fonte grande, alinhado à esquerda no mobile, centralizado no desktop */}
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
             fontWeight: 700,
-            fontSize: "clamp(22px, 2.2vw, 30px)",
+            fontSize: "clamp(32px, 4vw, 48px)",
             color: "#fdfdfd",
-            lineHeight: 1.25,
-            marginBottom: 16,
+            lineHeight: 1.15,
+            marginBottom: 20,
             textAlign: "center",
           }}>
             Metodologia construída na prática. Decisões baseadas em dados.
           </h2>
 
-          {/* Paragraph — fonte corrigida, centralizado na web */}
+          {/* Paragraph */}
           <p style={{
             fontFamily: "'Manrope', sans-serif",
-            fontSize: "clamp(14px, 1vw, 16px)",
+            fontSize: "clamp(16px, 1.2vw, 18px)",
             fontWeight: 400,
             color: "#c8cdd3",
-            lineHeight: 1.6,
-            marginBottom: 40,
+            lineHeight: 1.65,
+            marginBottom: 48,
             textAlign: "center",
-            maxWidth: 600,
-            margin: "0 auto 40px",
+            maxWidth: 640,
+            margin: "0 auto 48px",
           }}>
             Não são apenas anúncios. Entregamos um método que entende quem é o seu cliente, como ele compra e como fazê-lo comprar novamente.
           </p>
 
-          {/* Stats row: +R$2mi | +75 | +7,5x — conforme referência do Figma */}
+        </div>
+
+        {/* ===== STATS — Desktop: 3 colunas fundo branco | Mobile: carrossel com seta ===== */}
+        {/* Desktop: linha branca com 3 stats separados por divisores */}
+        <div className="stats-desktop" style={{
+          background: "#f5f6f7",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "stretch",
+          padding: "0",
+        }}>
+          {stats.map((stat, i) => (
+            <div key={i} style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 20,
+              padding: "32px 48px",
+              borderRight: i < stats.length - 1 ? "1px solid #d0d5dd" : "none",
+              flex: 1,
+              maxWidth: 380,
+            }}>
+              <span style={{
+                fontFamily: "'Ubuntu', sans-serif",
+                fontWeight: 700,
+                fontSize: "clamp(32px, 3vw, 44px)",
+                color: "#001a29",
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}>{stat.value}</span>
+              <span style={{
+                fontFamily: "'Manrope', sans-serif",
+                fontSize: 15,
+                color: "#4a5568",
+                lineHeight: 1.45,
+              }}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: 1 stat visível + setas para navegar */}
+        <div className="stats-mobile" style={{ background: "#001a29", padding: "0 0 48px" }}>
           <div style={{
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: 16,
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 24px",
           }}>
-            {/* Stat 1: +R$2mi */}
+            {/* Prev arrow */}
+            <button
+              onClick={() => setActiveStat((activeStat - 1 + stats.length) % stats.length)}
+              aria-label="Anterior"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 8,
+                color: "#fdfdfd",
+                opacity: 0.7,
+                flexShrink: 0,
+              }}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            {/* Active stat */}
             <div style={{
               display: "flex",
               alignItems: "center",
-              gap: 16,
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 8,
-              padding: "18px 28px",
-              flex: "1 1 200px",
-              minWidth: 180,
-              maxWidth: 280,
+              gap: 20,
+              flex: 1,
+              justifyContent: "center",
+              padding: "28px 8px",
+              minHeight: 80,
             }}>
               <span style={{
                 fontFamily: "'Ubuntu', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(26px, 2.5vw, 36px)",
+                fontSize: 44,
                 color: "#fdfdfd",
                 lineHeight: 1,
                 whiteSpace: "nowrap",
-              }}>+R$2mi</span>
+              }}>{stats[activeStat].value}</span>
               <span style={{
                 fontFamily: "'Manrope', sans-serif",
-                fontSize: 13,
+                fontSize: 15,
                 color: "#c8cdd3",
-                lineHeight: 1.4,
-              }}>Investidos em anúncios<br />no Meta Ads</span>
+                lineHeight: 1.45,
+                maxWidth: 160,
+              }}>{stats[activeStat].label}</span>
             </div>
 
-            {/* Stat 2: +75 */}
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 8,
-              padding: "18px 28px",
-              flex: "1 1 200px",
-              minWidth: 180,
-              maxWidth: 280,
-            }}>
-              <span style={{
-                fontFamily: "'Ubuntu', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(26px, 2.5vw, 36px)",
+            {/* Next arrow */}
+            <button
+              onClick={() => setActiveStat((activeStat + 1) % stats.length)}
+              aria-label="Próximo"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 8,
                 color: "#fdfdfd",
-                lineHeight: 1,
-                whiteSpace: "nowrap",
-              }}>+75</span>
-              <span style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: 13,
-                color: "#c8cdd3",
-                lineHeight: 1.4,
-              }}>Contas de anúncios<br />gerenciadas</span>
-            </div>
-
-            {/* Stat 3: +7,5x */}
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 8,
-              padding: "18px 28px",
-              flex: "1 1 200px",
-              minWidth: 180,
-              maxWidth: 280,
-            }}>
-              <span style={{
-                fontFamily: "'Ubuntu', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(26px, 2.5vw, 36px)",
-                color: "#fdfdfd",
-                lineHeight: 1,
-                whiteSpace: "nowrap",
-              }}>+7,5x</span>
-              <span style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontSize: 13,
-                color: "#c8cdd3",
-                lineHeight: 1.4,
-              }}>ROAS médio de nossos<br />clientes.</span>
-            </div>
+                opacity: 0.7,
+                flexShrink: 0,
+              }}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
           </div>
 
+          {/* Dots indicator */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 6 }}>
+            {stats.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveStat(i)}
+                aria-label={`Stat ${i + 1}`}
+                style={{
+                  width: i === activeStat ? 20 : 6,
+                  height: 6,
+                  borderRadius: 3,
+                  background: i === activeStat ? "#fdfdfd" : "rgba(255,255,255,0.3)",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: 0,
+                  transition: "all 0.3s ease",
+                }}
+              />
+            ))}
+          </div>
         </div>
+
       </section>
 
       {/* ===== PERFORMANCE+ SECTION (blue bg) ===== */}
