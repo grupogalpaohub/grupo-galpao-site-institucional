@@ -37,11 +37,14 @@ const GGLogoIcon = () => (
   </svg>
 );
 
-// Performance+ Logo — exact Figma SVGs: triangle (485-328) + plus (485-330), both #003F61
-const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
+// Performance+ Logo — exact Figma SVGs: triangle (485-328) + plus (485-330)
+// color prop: 'white' for blue bg section, 'dark' for dark cards
+const PerfPlusLogo = ({ height = 56, color = 'white' }: { height?: number; color?: 'white' | 'dark' }) => {
   const scale = height / 55.9;
+  const triColor = color === 'white' ? '#fdfdfd' : '#fdfdfd';
+  const textColor = color === 'white' ? '#fdfdfd' : '#fdfdfd';
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       {/* Icon group: triangle + plus mark */}
       <div style={{ position: 'relative', width: 65 * scale, height: 55.9 * scale, flexShrink: 0 }}>
         {/* Triangle (485-328) */}
@@ -52,7 +55,7 @@ const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
           fill="none"
           style={{ position: 'absolute', left: 0, top: 0 }}
         >
-          <path fillRule="evenodd" clipRule="evenodd" d="M2.73303 56C1.09729 55.0235 0 53.2301 0 51.1813C0 50.2173 0.242842 49.3101 0.670381 48.5176L29.0037 2.2839C29.407 1.73386 29.9078 1.26046 30.4806 0.889583C31.3498 0.326707 32.3844 0 33.4944 0C34.6039 0 35.6379 0.32635 36.5069 0.888656C37.0743 1.25589 37.5713 1.72373 37.9727 2.26706L56.8849 33.1275L56.8567 33.1275C56.9047 33.1857 56.9507 33.2456 56.9948 33.3069L57.262 33.7428C57.5074 34.219 57.6462 34.7595 57.6462 35.3324C57.6462 37.244 56.1016 38.796 54.1992 38.796C54.0253 38.796 53.8544 38.783 53.6874 38.7579L53.7176 38.8073L26.7064 38.7363C23.7913 38.5561 21.4792 36.1202 21.4792 33.146C21.4792 33.1088 21.4796 33.0715 21.4803 33.0344L50.2261 33.11L33.4934 5.80593L2.73303 56Z" fill="#fdfdfd"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.73303 56C1.09729 55.0235 0 53.2301 0 51.1813C0 50.2173 0.242842 49.3101 0.670381 48.5176L29.0037 2.2839C29.407 1.73386 29.9078 1.26046 30.4806 0.889583C31.3498 0.326707 32.3844 0 33.4944 0C34.6039 0 35.6379 0.32635 36.5069 0.888656C37.0743 1.25589 37.5713 1.72373 37.9727 2.26706L56.8849 33.1275L56.8567 33.1275C56.9047 33.1857 56.9507 33.2456 56.9948 33.3069L57.262 33.7428C57.5074 34.219 57.6462 34.7595 57.6462 35.3324C57.6462 37.244 56.1016 38.796 54.1992 38.796C54.0253 38.796 53.8544 38.783 53.6874 38.7579L53.7176 38.8073L26.7064 38.7363C23.7913 38.5561 21.4792 36.1202 21.4792 33.146C21.4792 33.1088 21.4796 33.0715 21.4803 33.0344L50.2261 33.11L33.4934 5.80593L2.73303 56Z" fill={triColor}/>
         </svg>
         {/* Plus mark (485-330) */}
         <svg
@@ -62,21 +65,86 @@ const PerfPlusLogo = ({ height = 56 }: { height?: number }) => {
           fill="none"
           style={{ position: 'absolute', left: 48.66 * scale, top: 9.88 * scale }}
         >
-          <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill="#fdfdfd"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M2.9249 0L6.83875 0.0133859C7.00041 0.0261884 7.14173 0.112241 7.22976 0.238447L9.70878 4.28358L14.7787 4.30264L16.9365 7.82382C16.977 7.89897 17.0001 7.98495 17.0001 8.07631C17.0001 8.36269 16.774 8.59641 16.4916 8.60695L12.3487 8.59132L14.5094 12.1173C14.549 12.1917 14.5715 12.2767 14.5715 12.3669C14.5715 12.6554 14.3421 12.8905 14.0567 12.8977L10.1667 12.8831C9.99139 12.8734 9.83871 12.7778 9.74981 12.6375C9.74706 12.633 9.74433 12.6285 9.74165 12.624L7.25857 8.57219L2.22377 8.5532L0.0532166 5.01143C0.0191919 4.94123 0 4.86239 0 4.77903C0 4.49599 0.220881 4.26438 0.498798 4.24889L4.61861 4.26438L2.48185 0.77775C2.44304 0.703845 2.42105 0.619683 2.42105 0.530357C2.42105 0.245648 2.64467 0.0129479 2.9249 0Z" fill={triColor}/>
         </svg>
       </div>
-      {/* Text: "Performance+" — BRANCO conforme Figma (sobre fundo azul claro) */}
+      {/* Text: "Performance+" */}
       <span style={{
         fontFamily: "'Ubuntu', sans-serif",
         fontWeight: 700,
         fontSize: height * 0.6,
-        color: '#fdfdfd',
+        color: textColor,
         letterSpacing: '-0.01em',
         lineHeight: 1,
       }}>Performance+</span>
     </div>
   );
 };
+
+// SVG icons for RoadMap — matching Figma reference (inside blue circles)
+const IconSetup = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>
+);
+const IconFunil = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+);
+const IconCriativos = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+  </svg>
+);
+const IconCanais = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="1" x2="12" y2="23"/>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+  </svg>
+);
+const IconFidelizacao = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+    <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+  </svg>
+);
+const IconExpansao = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fdfdfd" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>
+);
+
+// Icon for "Estrutura antes de Escala" — chart + gears
+const IconEstrutura = () => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="56" height="56" rx="8" fill="#f0f7ff"/>
+    <rect x="14" y="30" width="6" height="12" rx="2" fill="#1b9ce3"/>
+    <rect x="25" y="22" width="6" height="20" rx="2" fill="#1b9ce3"/>
+    <rect x="36" y="14" width="6" height="28" rx="2" fill="#1b9ce3"/>
+    <circle cx="38" cy="18" r="5" fill="#001a29" stroke="#1b9ce3" strokeWidth="2"/>
+    <path d="M38 15v6M35 18h6" stroke="#1b9ce3" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+// Icon for "Foco em Resultado" — target + checklist
+const IconFoco = () => (
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="56" height="56" rx="8" fill="#f0f7ff"/>
+    <circle cx="24" cy="28" r="10" stroke="#1b9ce3" strokeWidth="2" fill="none"/>
+    <circle cx="24" cy="28" r="5" stroke="#1b9ce3" strokeWidth="2" fill="none"/>
+    <circle cx="24" cy="28" r="2" fill="#1b9ce3"/>
+    <line x1="34" y1="28" x2="42" y2="28" stroke="#1b9ce3" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="24" y1="18" x2="24" y2="10" stroke="#1b9ce3" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M36 18l3 3-6 6" stroke="#1b9ce3" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 // Roadmap icons
 const RoadmapIcon = ({ children }: { children: React.ReactNode }) => (
@@ -706,14 +774,8 @@ export default function Home() {
               <img src={IMAGES.caseEcomm} alt="Performance+ Ecomm" style={{ width: "100%", height: 200, objectFit: "cover", opacity: 0.4 }} />
               <div style={{ padding: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
-                    <text x="30" y="28" fill="white" fontSize="14" fontWeight="900" fontFamily="Ubuntu">+</text>
-                  </svg>
-                  <div>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Performance+</div>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Ecomm</div>
-                  </div>
+                  <PerfPlusLogo height={36} color="white" />
+                  <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Ecomm</div>
                 </div>
                 <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", marginBottom: 24, lineHeight: 1.5, textAlign: "center" }}>
                   Seu E-Commerce lucrando 24h,<br />7 dias por semana.
@@ -734,14 +796,8 @@ export default function Home() {
               <img src={IMAGES.caseLeads} alt="Performance+ Leads" style={{ width: "100%", height: 200, objectFit: "cover", opacity: 0.4 }} />
               <div style={{ padding: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-                    <path d="M24 6L42 38H6L24 6Z" fill="white" opacity="0.9"/>
-                    <text x="30" y="28" fill="white" fontSize="14" fontWeight="900" fontFamily="Ubuntu">+</text>
-                  </svg>
-                  <div>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Performance+</div>
-                    <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Leads</div>
-                  </div>
+                  <PerfPlusLogo height={36} color="white" />
+                  <div style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 20, color: "#fdfdfd" }}>Leads</div>
                 </div>
                 <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 16, color: "#fdfdfd", marginBottom: 24, lineHeight: 1.5, textAlign: "center" }}>
                   Mais contratos fechados, menos<br />coleção de Leads aleatórios.
@@ -756,7 +812,13 @@ export default function Home() {
       </section>
 
       {/* ===== ROADMAP SECTION ===== */}
-      <section id="roadmap" style={{ background: "#001a29", padding: "80px 0", borderRadius: "60px 60px 0 0" }}>
+      <section id="roadmap" style={{ background: "#001a29", padding: "80px 0", borderRadius: "60px 60px 0 0", position: "relative", overflow: "hidden" }}>
+        {/* GG Logo decorativo ao fundo do RoadMap */}
+        <div style={{ position: "absolute", left: "-60px", bottom: "-40px", opacity: 0.05, pointerEvents: "none" }}>
+          <svg width="400" height="450" viewBox="0 0 31 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.2933 32.7225L17.5887 26.7799L21.0523 21.206H28.1664L21.2933 32.7225ZM16.4151 24.8973L14.1081 21.1966H18.7147L16.4151 24.8973ZM11.542 32.7393L2.09072 17.3383C1.95106 17.1104 1.9556 16.8191 2.10239 16.5958L11.5437 2.23347L15.1368 7.62626L10.064 15.5888C9.51218 16.4553 9.50662 17.5781 10.0499 18.4496L10.5256 19.2129H7.12346C6.68943 19.2129 6.42153 19.7523 6.64504 20.176L7.0209 20.8884C7.12181 21.0796 7.30336 21.1966 7.49924 21.1966H11.7624L15.2442 26.7815L11.542 32.7393ZM20.9305 2.23645L28.0334 12.6263H20.925C20.884 12.6263 20.8462 12.6061 20.8234 12.5719L17.5121 7.60207L20.9305 2.23645ZM30.4535 19.9073C30.2113 19.4806 29.7559 19.2155 29.2651 19.2155H27.492V19.2129H12.8714L11.739 17.3966C11.5989 17.1718 11.6003 16.882 11.7429 16.6585L16.3432 9.43721L19.1666 13.6752C19.5592 14.2646 20.2165 14.6167 20.925 14.6167H29.2155C29.7241 14.6167 30.1872 14.3373 30.4244 13.8876C30.6615 13.4378 30.6306 12.8979 30.3437 12.4788L22.3177 0.738959C21.9963 0.268527 21.4605 -0.00845514 20.8944 0.0022703C20.3246 0.0115083 19.8015 0.303757 19.4953 0.784366L16.3058 5.79111L12.9496 0.753521C12.6339 0.279957 12.0958 0.00344467 11.5369 0C10.9679 0.00180062 10.4415 0.286534 10.1289 0.762054L0.439004 15.5024C-0.1296 16.3676 -0.147292 17.4968 0.394303 18.3792L10.0989 34.1935C10.4083 34.697 10.9452 34.9984 11.5359 35H11.5405C12.1293 35 12.666 34.7018 12.9767 34.2015L16.4178 28.6641L19.8636 34.1918C20.1751 34.6913 20.7104 34.9883 21.2982 34.9883C21.3038 34.9883 21.3094 34.9883 21.3149 34.988C21.9093 34.9825 22.446 34.6744 22.751 34.1639L30.4387 21.2826C30.6901 20.861 30.696 20.3342 30.4535 19.9073Z" fill="#fdfdfd"/>
+          </svg>
+        </div>
         <div className="container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
           <h2 style={{
             fontFamily: "'Ubuntu', sans-serif",
@@ -772,46 +834,45 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
             {[
               {
-                icon: "⚙️",
+                icon: <IconSetup />,
                 title: "Setup Inicial",
                 desc: "Tracking Web + Server-side, CRM e organização de dados. Objetivo: confiança nos dados.",
               },
               {
-                icon: "🔍",
+                icon: <IconFunil />,
                 title: "Análise de Funil",
                 desc: "Identificar taxas de conversão e principais gargalos. Objetivo: Otimização dos pontos de melhoria.",
               },
               {
-                icon: "📢",
+                icon: <IconCriativos />,
                 title: "Estruturação de Criativos",
                 desc: "Ângulos, conceitos e hooks + testes A/B. Objetivo: validar criativos.",
               },
               {
-                icon: "💰",
+                icon: <IconCanais />,
                 title: "Otimização de Canais",
                 desc: "CRO e testes A/B de UI/UX. Objetivo: maximizar taxas de conversão.",
               },
               {
-                icon: "👍",
+                icon: <IconFidelizacao />,
                 title: "Fidelização",
                 desc: "Pós-venda e aumento de LTV. Objetivo: extrair o máximo de valor.",
               },
               {
-                icon: "🎯",
+                icon: <IconExpansao />,
                 title: "Expansão",
                 desc: "Metas S.M.A.R.T. e projeções. Objetivo: planejar o futuro.",
               },
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
                 <div style={{
-                  width: 50,
-                  height: 50,
+                  width: 56,
+                  height: 56,
                   borderRadius: "50%",
                   background: "#0d6ca0",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: 22,
                   flexShrink: 0,
                 }}>
                   {item.icon}
@@ -879,19 +940,21 @@ export default function Home() {
                 Experiência com as maiores ferramentas e plataformas do mercado.
               </h3>
               <div style={{ display: "flex", justifyContent: "center", gap: 24, alignItems: "center", marginBottom: 24, flexWrap: "wrap" }}>
-                {/* Meta */}
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                {/* Meta — símbolo ∞ oficial */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <svg width="36" height="20" viewBox="0 0 36 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 10C18 10 14.5 4 10 4C5.5 4 2 7.13 2 10C2 12.87 5.5 16 10 16C13 16 15.5 13.5 18 10ZM18 10C18 10 21.5 4 26 4C30.5 4 34 7.13 34 10C34 12.87 30.5 16 26 16C23 16 20.5 13.5 18 10Z" stroke="#fdfdfd" strokeWidth="2.5" fill="none"/>
                   </svg>
-                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", fontWeight: 600 }}>∞ Meta</span>
+                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 20, color: "#fdfdfd", fontWeight: 700, letterSpacing: "0.02em" }}>Meta</span>
                 </div>
-                {/* Google Ads */}
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24">
-                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+                {/* Google Ads — triângulo colorido oficial */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L2 26h10L16 18l4 8h10L16 2Z" fill="#FBBC04"/>
+                    <path d="M16 2L26 26H16V2Z" fill="#4285F4"/>
+                    <path d="M16 2L6 26H16V2Z" fill="#34A853"/>
                   </svg>
-                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 18, color: "#fdfdfd", fontWeight: 600 }}>Google Ads</span>
+                  <span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 20, color: "#fdfdfd", fontWeight: 700, letterSpacing: "0.02em" }}>Google Ads</span>
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -930,26 +993,30 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 40 }}>
             {[
               {
+                icon: <IconEstrutura />,
                 title: "Estrutura antes de Escala",
                 desc: "Organizamos seus dados, processos e canais antes de investir em escala. Crescimento sem base é desperdício.",
               },
               {
+                icon: <IconFoco />,
                 title: "Foco em Resultado",
                 desc: "Cada decisão é orientada por métricas reais. Sem vaidade de métricas, apenas o que impacta seu negócio.",
               },
               {
+                icon: null,
                 title: "Transparência Total",
                 desc: "Relatórios claros, linguagem acessível e acesso completo aos dados da sua operação.",
               },
               {
+                icon: null,
                 title: "Parceria de longo prazo",
                 desc: "Não somos fornecedores. Somos parte do seu time, comprometidos com o crescimento sustentável.",
               },
             ].map((item, i) => (
               <div key={i} style={{ background: "#f8f9fa", borderRadius: 8, padding: 28, display: "flex", gap: 16, alignItems: "flex-start", border: "1px solid #e8e8e8" }}>
-                <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#1b9ce3", marginTop: 8, flexShrink: 0 }} />
+                {item.icon ? item.icon : <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#1b9ce3", marginTop: 8, flexShrink: 0 }} />}
                 <div>
-                  <h4 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 18, color: "#001a29", marginBottom: 8 }}>{item.title}</h4>
+                  <h4 style={{ fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 18, color: "#001a29", marginBottom: 8, marginTop: item.icon ? 8 : 0 }}>{item.title}</h4>
                   <p style={{ fontFamily: "'Manrope', sans-serif", fontSize: 14, color: "#001a29", opacity: 0.7, lineHeight: 1.6 }}>{item.desc}</p>
                 </div>
               </div>
